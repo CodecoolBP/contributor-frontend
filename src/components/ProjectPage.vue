@@ -9,6 +9,20 @@
             </div>
 
             <div class="col-md-8">
+                <div id="app">
+                    <ul v-if="projects && projects.length">
+                        <li v-for="post of projects">
+                            <p><strong>{{post.name}}</strong></p>
+                            <p>{{post.description}}</p>
+                        </li>
+                    </ul>
+
+                    <ul v-if="errors && errors.length">
+                        <li v-for="error of errors">
+                            {{error.message}}
+                        </li>
+                    </ul>
+                </div>
                 <h1>Project neve</h1>
                 <div class="row">
                     <div class="col-md-4">
@@ -72,12 +86,35 @@
 </template>
 
 <script>
+    /* eslint-disable no-console */
+
+    import axios from 'axios';
+
     export default {
         name: 'HelloWorld',
         props: {
             msg: String
+        },
+        data() {
+            return {
+                projects: [],
+                errors: []
+            }
+        },
+
+        // Fetches projects when the component is created.
+        created() {
+            axios.get(`http://localhost:5000/contributorapi/project/1`)
+                .then(response => {
+                    // JSON responses are automatically parsed.
+                    this.projects = response.data;
+                })
+                .catch(e => {
+                    this.errors.push(e)
+                })
         }
     }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

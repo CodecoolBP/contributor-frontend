@@ -1,27 +1,29 @@
 <template>
-  <div id="app">
-    <ProjectPage msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div id="app">
+        <ProjectPage msg="Welcome to Your Vue.js App"/>
+    </div>
 </template>
 
 <script>
-import ProjectPage from './components/ProjectPage.vue'
+    /* eslint-disable no-undef */
 
-export default {
-  name: 'app',
-  components: {
-      ProjectPage
-  }
-}
+    import ProjectPage from './components/ProjectPage.vue'
+
+    export default {
+        name: 'app',
+        components: {
+            ProjectPage
+        }
+    }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    #app {
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+        margin-top: 60px;
+    }
 </style>
