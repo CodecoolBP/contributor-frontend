@@ -1,84 +1,64 @@
 <template>
     <div class="container">
-        <div class="row">
-
-            <div class="col-md-4">
-                <img class="logo" alt="Vue logo" src="../assets/logos/logo1.png">
-                <p>Status: open</p>
-                <p>Tags: #healthcare</p>
-            </div>
-
-            <div class="col-md-8">
-                <div id="app">
-                    <ul v-if="projects && projects.length">
-                        <li v-for="post of projects">
-                            <p><strong>{{post.name}}</strong></p>
-                            <p>{{post.description}}</p>
-                        </li>
-                    </ul>
-
-                    <ul v-if="errors && errors.length">
-                        <li v-for="error of errors">
-                            {{error.message}}
-                        </li>
-                    </ul>
-                </div>
-                <h1>Project neve</h1>
+        <div v-if="projects && projects.length">
+            <div v-for="project of projects">
                 <div class="row">
+
                     <div class="col-md-4">
-                        <p>Organisation</p>
+                        <img class="logo" alt="Vue logo" src="../assets/logos/logo1.png">
+                        <br><br>
+                        <p>Status: {{project.status}}</p>
+                        <p>Tags:
+                            <span v-for="tag in project.tags">
+                                <span>{{tag}}  </span>
+                            </span>
+                        </p>
                     </div>
+
                     <div class="col-md-8">
-                        <p> Vöröskereszt</p>
+
+                        <h1>{{project.name}}</h1><br><br>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>Organisation</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p> {{project.organisation}}</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>Description</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{project.description}}</p>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>Requirements</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{project.requirements}}</p>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-4">
-                        <p>Description</p>
-                    </div>
-                    <div class="col-md-8">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo
-                            sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo
-                            sagittis,
-                            sapien dui mattis dui, non pulvinar lorem felis nec erat
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo
-                            sagittis,
-                            sapien dui
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo
-                            sagittis,
-                            sapien dui mattis dui, non pulvinar lorem felis nec eratmattis dui, non pulvinar lorem felis
-                            nec
-                            erat</p>
+
+                <div v-if="errors && errors.length">
+                    <div v-for="error of errors">
+                        {{error.message}}
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-4">
-                        <p>Description</p>
-                    </div>
-                    <div class="col-md-8">
-                        <p>Requirements: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut
-                            commodo
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo
-                            sagittis,
-                            sapien dui mattis dui, non pulvinar lorem felis nec erat
-                            sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo
-                            sagittis,
-                            sapien dui mattis dui, non pulvinar lorem felis nec erat
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo
-                            sagittis,
-                            sapien dui mattis dui, non pulvinar lorem felis nec erat
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo
-                            sagittis,
-                            sapien dui mattis dui, non pulvinar lorem felis nec erat
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo
-                            sagittis,
-                            sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
@@ -91,7 +71,7 @@
     import axios from 'axios';
 
     export default {
-        name: 'HelloWorld',
+        name: 'ProjectPage',
         props: {
             msg: String
         },
@@ -101,18 +81,19 @@
                 errors: []
             }
         },
-
         // Fetches projects when the component is created.
         created() {
-            axios.get(`http://localhost:5000/contributorapi/project/1`)
+            axios.get('http://localhost:5000/contributorapi/project/'+this.$route.params.id+'/')
                 .then(response => {
-                    // JSON responses are automatically parsed.
                     this.projects = response.data;
+                    console.log("resp: "+response.data);
+                    console.log("proj" + this.projects)
                 })
                 .catch(e => {
                     this.errors.push(e)
                 })
-        }
+        },
+
     }
 
 </script>
