@@ -1,11 +1,11 @@
 <template>
     <div id="app">
-        <ProjectPage msg="Welcome to Your Vue.js App"/>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-    /* eslint-disable no-undef */
+    /* eslint-disable no-undef,vue/no-unused-components */
 
     import ProjectPage from './components/ProjectPage.vue'
 
