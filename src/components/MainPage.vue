@@ -4,7 +4,25 @@
         <div class="container-fluid headercontainer">
             <div class="container">
 
-                <navigation></navigation>
+                <nav class="navbar navbar-expand-lg  bg-dark">
+                    <a class="navbar-brand" href="#">Navbar</a>
+
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="#">Disabled</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </nav>
 
                 <div class="img-wrapper">
                     <img class="img-responsive" alt="Header image" src="../assets/titlebackground.png">
@@ -61,16 +79,16 @@
 
 <script>
     import axios from 'axios';
-    import Navigation from '/Users/manoczar/Downloads/Codecool/Advanced/ContriButor/contributor-frontend/src/components/Navigation.vue'
+    //import Navigation from '/Users/manoczar/Downloads/Codecool/Advanced/ContriButor/contributor-frontend/src/components/Navigation.vue'
 
     export default {
         name: 'MaintPage',
         props: {
             msg: String
         },
-        components: {
+        /*components: {
             'Navigation' : Navigation
-        },
+        },*/
         data() {
             return {
                 projects: [],
