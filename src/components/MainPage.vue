@@ -9,15 +9,21 @@
 
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
+                        <ul class="navbar-nav nav-tabs mr-auto">
                             <li class="nav-item active">
                                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
+                                <a class="nav-link" href="#">Success strories</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link disabled" href="#">Disabled</a>
+                                <a class="nav-link" href="#">TOP projects </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contact</a>
                             </li>
                         </ul>
 
@@ -25,7 +31,7 @@
                 </nav>
 
                 <div class="img-wrapper">
-                    <img class="img-responsive" alt="Header image" src="../assets/titlebackground.png">
+                    <img class="img-responsive" alt="Header image" src="../assets/img/titlebackground.png">
                     <div class="img-overlay">
                         <button class="btn btn-md btn-success btn-responsive" id="addproject">Add new project</button>
                         <button class="btn btn-md btn-success btn-responsive" id="seeprojects">See active projects
@@ -79,16 +85,12 @@
 
 <script>
     import axios from 'axios';
-    //import Navigation from '/Users/manoczar/Downloads/Codecool/Advanced/ContriButor/contributor-frontend/src/components/Navigation.vue'
 
     export default {
         name: 'MaintPage',
         props: {
             msg: String
         },
-        /*components: {
-            'Navigation' : Navigation
-        },*/
         data() {
             return {
                 projects: [],
@@ -100,8 +102,6 @@
             axios.get('http://localhost:5000/contributorapi/list')
                 .then(response => {
                     this.projects = response.data;
-                    console.log("resp: "+response.data);
-                    console.log("proj" + this.projects)
                 })
                 .catch(e => {
                     this.errors.push(e)

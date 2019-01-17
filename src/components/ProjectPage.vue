@@ -31,11 +31,10 @@
                 <div class="row">
 
                     <div class="col-md-4">
-                        <img class="logo" alt="Vue logo" src="../assets/logos/logo1.png">
-                        <p><b>Status:</b> {{project.status}}</p>
-                        <br>
-                        <br>
-                        <p><b>Tags:</b>
+                        <img class="logo" alt="Vue logo" src="../assets/img/logos/logo1.png">
+                        <br><br>
+                        <p>Status: {{project.status}}</p>
+                        <p>Tags:
                             <span v-for="tag in project.tags">
                                 <span>{{tag}}  </span>
                             </span>
@@ -98,16 +97,12 @@
     /* eslint-disable no-console */
 
     import axios from 'axios';
-    //import Navigation from '/Users/manoczar/Downloads/Codecool/Advanced/ContriButor/contributor-frontend/src/components/Navigation.vue';
 
     export default {
         name: 'ProjectPage',
         props: {
             msg: String
         },
-        /*components: {
-            'Navigation' : Navigation
-        },*/
         data() {
             return {
                 projects: [],
