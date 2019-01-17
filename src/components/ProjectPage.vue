@@ -5,7 +5,7 @@
                 <div class="row">
 
                     <div class="col-md-4">
-                        <img class="logo" alt="Vue logo" src="../assets/logos/logo1.png">
+                        <img class="logo" alt="Vue logo" src="../assets/img/logos/logo1.png">
                         <br><br>
                         <p>Status: {{project.status}}</p>
                         <p>Tags:

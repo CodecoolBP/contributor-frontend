@@ -31,7 +31,7 @@
 
 
                 <div class="img-wrapper">
-                    <img class="img-responsive" alt="Header image" src="../assets/titlebackground.png">
+                    <img class="img-responsive" alt="Header image" src="../assets/img/titlebackground.png">
                     <div class="img-overlay">
                         <button class="btn btn-md btn-success btn-responsive" id="addproject">Add new project</button>
                         <button class="btn btn-md btn-success btn-responsive" id="seeprojects">See active projects
@@ -63,10 +63,10 @@
 
                 <br>
 
-                <div class="card-columns">
+                <div class="card-columns align-items-lg-stretch">
                     <div v-if="projects && projects.length">
                         <div v-for="project of projects">
-                            <div class="card">
+                            <div class="card ">
                                 <img class="card-img-top" src="/images/pathToYourImage.png" alt="Card image cap">
                                 <div class="card-body">
                                     <h4 class="card-title">{{project.name}}</h4>
