@@ -4,26 +4,7 @@
         <div class="container-fluid headercontainer">
             <div class="container">
 
-                <nav class="navbar navbar-expand-lg  bg-dark">
-                    <a class="navbar-brand" href="#">Navbar</a>
-
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled" href="#">Disabled</a>
-                            </li>
-                        </ul>
-
-                    </div>
-                </nav>
-
+                <navigation></navigation>
 
                 <div class="img-wrapper">
                     <img class="img-responsive" alt="Header image" src="../assets/titlebackground.png">
@@ -62,7 +43,7 @@
                     <div v-if="projects && projects.length">
                         <div v-for="project of projects">
                             <div class="card">
-                                <img class="card-img-top" src="/images/pathToYourImage.png" alt="Card image cap">
+                                <img class="cardLogo" src="../assets/logos/logo1.png" alt="Card image cap">
                                 <div class="card-body">
                                     <h4 class="card-title">{{project.name}}</h4>
                                     <p class="card-text">{{project.shortDesc}}</p>
@@ -80,11 +61,15 @@
 
 <script>
     import axios from 'axios';
+    import Navigation from '/Users/manoczar/Downloads/Codecool/Advanced/ContriButor/contributor-frontend/src/components/Navigation.vue'
 
     export default {
         name: 'MaintPage',
         props: {
             msg: String
+        },
+        components: {
+            'Navigation' : Navigation
         },
         data() {
             return {
@@ -109,6 +94,8 @@
 </script>
 
 <style>
+    @import '/node_modules/bootstrap/scss/bootstrap.scss';
+
     .img-wrapper {
         position: relative;
     }
@@ -166,6 +153,11 @@
 
     .card {
         box-shadow: 6px 7px 17px -6px rgba(0, 0, 0, 0.75)
+    }
+
+    .cardLogo {
+        width: 10vw;
+        padding-top: 1.25rem;
     }
 
 </style>
