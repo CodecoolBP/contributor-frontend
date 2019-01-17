@@ -102,8 +102,6 @@
             axios.get('http://localhost:5000/contributorapi/list')
                 .then(response => {
                     this.projects = response.data;
-                    console.log("resp: "+response.data);
-                    console.log("proj" + this.projects)
                 })
                 .catch(e => {
                     this.errors.push(e)
