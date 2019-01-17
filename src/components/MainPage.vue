@@ -4,20 +4,25 @@
         <div class="container-fluid headercontainer">
             <div class="container">
 
-                <nav class="navbar navbar-expand-lg  bg-dark">
-                    <a class="navbar-brand" href="#">Navbar</a>
-
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav nav-tabs mr-auto">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <div class="navbar-collapse collapse w-100 dual-collapse2 order-1 order-md-0">
+                        <ul class="navbar-nav ml-auto text-center">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="/">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Success strories</a>
+                                <a class="nav-link" href="#">Success stories</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">TOP projects </a>
+                                <a class="nav-link" href="#">TOP lists</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="navbar-collapse collapse w-100 dual-collapse2 order-2 order-md-2">
+                        <ul class="navbar-nav mr-auto text-center">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Add new project</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">About</a>
@@ -26,14 +31,14 @@
                                 <a class="nav-link" href="#">Contact</a>
                             </li>
                         </ul>
-
                     </div>
                 </nav>
 
                 <div class="img-wrapper">
                     <img class="img-responsive" alt="Header image" src="../assets/img/titlebackground.png">
                     <div class="img-overlay">
-                        <a class="btn btn-md btn-warning btn-responsive" href="http://localhost:8080/#/add" role="button" id="addproject">Add new project</a>
+                        <a class="btn btn-md btn-warning btn-responsive" href="http://localhost:8080/#/add"
+                           role="button" id="addproject">Add new project</a>
                         <button class="btn btn-md btn-warning btn-responsive" id="seeprojects">See active projects
                         </button>
                     </div>
@@ -54,8 +59,8 @@
                         <div class="form-group col-md-6">
                             <form class="form-inline my-2 my-lg-0">
                                 <input class="form-control mr-sm-2" type="text" placeholder="Search"
-                                       aria-label="Search">
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                       aria-label="Search" id="search">
+                                <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
                             </form>
                         </div>
                     </div>
@@ -71,7 +76,8 @@
                                 <div class="card-body">
                                     <h4 class="card-title">{{project.name}}</h4>
                                     <p class="card-text">{{project.shortDesc}}</p>
-                                    <a  v-bind:href="'#/projects/'+ project.id" class="btn btn-primary">I'm interested!</a>
+                                    <a v-bind:href="'#/projects/'+ project.id" class="btn btn-primary">I'm
+                                        interested!</a>
                                 </div>
                             </div>
                         </div>
@@ -100,7 +106,7 @@
         }, methods: {
 
             getImage(currentId) {
-                return "../assets/img/logos/logo"+currentId+".png"
+                return "../assets/img/logos/logo" + currentId + ".png"
             }
         },
         // Fetches projects when the component is created.
@@ -184,12 +190,13 @@
         width: 10vw;
         padding-top: 1.25rem;
     }
-    card-columns {
-    @include media-breakpoint-only(lg) {
-        column-count: 4;
+
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-right: 1rem !important;
+        padding-left: 1rem !important;
     }
-    @include media-breakpoint-only(xl) {
-        column-count: 5;
+    #search {
+        width: 83%;
     }
-    }
+
 </style>
