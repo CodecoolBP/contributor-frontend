@@ -2,9 +2,9 @@
     <div class="container">
         <form>
             <div class="form-group">
-                <label for="title">Project title</label>
-                <input type="text" class="form-control" id="title" v-model="title" maxlength="25"
-                       placeholder="Project title" required>
+                <label for="name">Project name</label>
+                <input type="text" class="form-control" id="name" v-model="name" maxlength="25"
+                       placeholder="Project name" required>
             </div>
             <div class="form-group">
                 <label for="desc">Description</label>
@@ -53,7 +53,7 @@
         name: "AddProject",
         data() {
             return {
-                title: this.$refs.title,
+                name: this.$refs.name,
                 desc: this.$refs.desc,
                 shortdesc: this.$refs.shortdesc,
                 org: this.$refs.org,
@@ -69,22 +69,25 @@
                 this.selectedFile = event.target.files[0]
             },
             onUpload() {
-                let formData = [];
-                formData.push(this.title);
-                formData.push(this.desc);
-                formData.push(this.shortdesc);
-                formData.push(this.org);
-                formData.push(this.req);
-                formData.push(this.tags);
+                let formData = {};
+                formData["name"] = this.name;
+                formData["description"] = this.desc;
+                formData["shortDesc"] = this.shortdesc;
+                formData["organization"] = this.org;
+                formData["requirements"] = this.req;
+                formData["tags"] = this.tags.split(",");
                 let jsonData = JSON.stringify(formData);
                 console.log(formData);
                 console.log(jsonData);
 
                 //const formData = new FormData();
                 //formData.append(this.selectedFile, this.selectedFile.name);
-                axios.post('http://localhost:5000/contributorapi/project/add', {
-                    jsonData
-                })
+                axios.post('http://localhost:5000/contributorapi/project/add', jsonData, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    }
+                )
             }
         }
     }
