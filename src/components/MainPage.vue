@@ -88,13 +88,19 @@
 
     export default {
         name: 'MaintPage',
+
         props: {
             msg: String
         },
         data() {
             return {
                 projects: [],
-                errors: []
+                errors: [],
+            }
+        }, methods: {
+
+            getImage(currentId) {
+                return "../assets/img/logos/logo"+currentId+".png"
             }
         },
         // Fetches projects when the component is created.
