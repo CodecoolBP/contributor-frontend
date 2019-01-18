@@ -38,7 +38,8 @@
                 <input type="file" id="img-upload" @change="onFileChanged" required>
             </div>
         </form>
-        <button @click="onUpload">Save project</button>
+        <a @click="onUpload" href="/" class="btn btn-info">Save project</a>
+        
 
     </div>
 
@@ -80,6 +81,7 @@
                 console.log(formData);
                 console.log(jsonData);
 
+
                 //const formData = new FormData();
                 //formData.append(this.selectedFile, this.selectedFile.name);
                 axios.post('http://localhost:5000/contributorapi/project/add', jsonData, {
@@ -88,6 +90,8 @@
                         }
                     }
                 )
+
+
             }
         }
     }

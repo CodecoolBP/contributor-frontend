@@ -76,7 +76,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title">{{project.name}}</h4>
                                     <p class="card-text">{{project.shortDesc}}</p>
-                                    <a v-bind:href="'#/projects/'+ project.id" class="btn btn-primary">I'm
+                                    <a v-bind:href="'#/projects/'+ project.id" class="btn btn-info">I'm
                                         interested!</a>
                                 </div>
                             </div>
@@ -197,6 +197,9 @@
     }
     #search {
         width: 83%;
+    }
+    .btn-info{
+
     }
 
 </style>
