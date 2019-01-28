@@ -1,80 +1,74 @@
 <template>
-    <body>
-    <div class="container-fluid">
+    <div class="projectPageBack">
+        <div class="container-fluid">
+            <navbar></navbar>
+        </div>
 
-        <navbar></navbar>
+        <div class="container-fluid">
+            <div class="container">
 
+                <div class="bigcard" v-if="projects && projects.length">
+                    <div v-for="project of projects">
+                        <div class="row">
 
-    </div>
-    <div class="container-fluid">
-        <div class="container">
-
-            <div class="bigcard" v-if="projects && projects.length">
-                <div v-for="project of projects">
-                    <div class="row">
-
-                        <div class="col-md-4 col-centered">
-                            <img class="logo" alt="Vue logo" src="../assets/img/logos/logo1.png">
-                            <br><br>
-                            <p class="ptitle">Status: {{project.status}}</p>
-                            <p class="ptitle">Tags:
-                                <span v-for="tag in project.tags">
+                            <div class="col-md-4 col-centered">
+                                <img class="logo" alt="Vue logo" src="../assets/img/logos/logo1.png">
+                                <br><br>
+                                <p class="ptitle">Status: {{project.status}}</p>
+                                <p class="ptitle">Tags:
+                                    <span v-for="tag in project.tags">
                                 <span>{{tag}}  </span>
                             </span>
-                            </p>
+                                </p>
+                            </div>
+
+                            <div class="col-md-8">
+
+                                <h1 class="title display-3">{{project.name}}</h1><br><br>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <p class="ptitle">Organisation:</p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p> {{project.organisation}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <p class="ptitle">Description:</p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p>{{project.description}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <p class="ptitle">Requirements:</p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p>{{project.requirements}}</p>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
 
-                        <div class="col-md-8">
-
-                            <h1 class="title display-3">{{project.name}}</h1><br><br>
-
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <p class="ptitle">Organisation:</p>
-                                </div>
-                                <div class="col-md-8">
-                                    <p> {{project.organisation}}</p>
-                                </div>
+                        <div v-if="errors && errors.length">
+                            <div v-for="error of errors">
+                                {{error.message}}
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <p class="ptitle">Description:</p>
-                                </div>
-                                <div class="col-md-8">
-                                    <p>{{project.description}}</p>
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <p class="ptitle">Requirements:</p>
-                                </div>
-                                <div class="col-md-8">
-                                    <p>{{project.requirements}}</p>
-                                </div>
-                            </div>
-
-
                         </div>
+
+
                     </div>
-
-
-                    <div v-if="errors && errors.length">
-                        <div v-for="error of errors">
-                            {{error.message}}
-                        </div>
-                    </div>
-
-
+                    <button type="button" class="btn btn-danger">CONTRIBUTE</button>
                 </div>
-                <button type="button" class="btn btn-danger">CONTRIBUTE</button>
             </div>
         </div>
     </div>
-    </body>
-
 </template>
 
 <script>
@@ -116,7 +110,6 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    @import url('https://fonts.googleapis.com/css?family=Lato:700');
 
     h3 {
         margin: 40px 0 0;
@@ -143,12 +136,6 @@
         padding-bottom: 2vh;
     }
 
-    .container {
-        background-color: #fffcf2;
-        margin-bottom: 0px;
-        height: 100%;
-    }
-
     .col-md-8 {
         padding: 30px;
 
@@ -163,18 +150,20 @@
         padding: 30px;
     }
 
-    html, body {
+    .projectPageBack {
         background-color: #fffcf2;
-        margin: 0px;
+        margin: 0;
         height: 100%;
     }
 
     .container-fluid {
-        padding: 0px;
+        padding: 0;
     }
 
     .container {
-        margin-top: 40px;
+        height: 100%;
+        margin-top: 4vh;
+        margin-bottom: 4vh;
         background-color: white;
         box-shadow: 6px 7px 17px -6px rgba(0, 0, 0, 0.75);
         border: 1px solid rgba(169, 169, 169, 0.29);
