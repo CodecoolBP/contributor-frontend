@@ -97,50 +97,7 @@
 <style>
     @import '/node_modules/bootstrap/scss/bootstrap.scss';
 
-    .img-wrapper {
-        position: relative;
-    }
 
-    .img-responsive {
-        max-width: 100%;
-        height: auto;
-    }
-
-    .img-overlay {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        text-align: center;
-    }
-
-    .img-overlay:before {
-        content: ' ';
-        display: block;
-        /* adjust 'height' to position overlay content vertically */
-        height: 50%;
-    }
-
-    .btn-responsive {
-
-    }
-
-    #addproject, #seeprojects {
-        font-size: 1.5rem;
-        border-style: solid;
-        border-width: 1px;
-    }
-
-    #addproject {
-        margin-right: 8vw;
-        border-color: grey;
-
-    }
-
-    #seeprojects {
-        border-color: white;
-    }
 
     .headercontainer {
         background-color: #343a40;
