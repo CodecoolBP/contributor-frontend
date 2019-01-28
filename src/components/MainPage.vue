@@ -25,7 +25,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title">{{project.name}}</h4>
                                     <p class="card-text">{{project.shortDesc}}</p>
-                                    <a v-bind:href="'#/projects/'+ project.id" class="btn btn-primary">I'm
+                                    <a v-bind:href="'#/projects/'+ project.id" class="btn btn-info">I'm
                                         interested!</a>
                                 </div>
                             </div>
@@ -80,9 +80,15 @@
     }
 </script>
 
-<style>
+<style scoped>
     @import '/node_modules/bootstrap/scss/bootstrap.scss';
 
+    #app {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+    }
     .headercontainer {
         background-color: #343a40;
         padding-bottom: 3.5vh;
@@ -91,6 +97,7 @@
     .projectlist-container {
         background-color: #fffcf2;
         padding-top: 3vh;
+        padding-bottom: 5vh;
     }
 
     .card {
