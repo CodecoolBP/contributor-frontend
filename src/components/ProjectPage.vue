@@ -202,9 +202,5 @@
         text-align: center;
     }
 
-    @media (min-width: 992px) {
-        .navbar {
-            height: 50px;
-        }
-    }
+
 </style>

@@ -34,11 +34,18 @@
 </template>
 
 <script>
-    export default {
-
-    }
+    export default {}
 </script>
 
 <style scoped>
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-right: 1rem !important;
+        padding-left: 1rem !important;
+    }
 
+    @media (min-width: 992px) {
+        .navbar {
+            height: 50px;
+        }
+    }
 </style>

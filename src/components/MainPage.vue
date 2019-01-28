@@ -97,8 +97,6 @@
 <style>
     @import '/node_modules/bootstrap/scss/bootstrap.scss';
 
-
-
     .headercontainer {
         background-color: #343a40;
         padding-bottom: 3.5vh;
@@ -117,11 +115,6 @@
     .cardLogo {
         width: 10vw;
         padding-top: 1.25rem;
-    }
-
-    .navbar-expand-lg .navbar-nav .nav-link {
-        padding-right: 1rem !important;
-        padding-left: 1rem !important;
     }
 
     #search {
