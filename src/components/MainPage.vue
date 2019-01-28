@@ -4,35 +4,8 @@
         <div class="container-fluid headercontainer">
             <div class="container">
 
-                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                    <div class="navbar-collapse collapse w-100 dual-collapse2 order-1 order-md-0">
-                        <ul class="navbar-nav ml-auto text-center">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="/">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Success stories</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">TOP lists</a>
-                            </li>
-                        </ul>
-                    </div>
+                <navbar></navbar>
 
-                    <div class="navbar-collapse collapse w-100 dual-collapse2 order-2 order-md-2">
-                        <ul class="navbar-nav mr-auto text-center">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Add new project</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
 
                 <div class="img-wrapper">
                     <img class="img-responsive" alt="Header image" src="../assets/img/titlebackground.png">
@@ -91,12 +64,16 @@
 
 <script>
     import axios from 'axios';
+    import Navbar from './Navbar.vue'
 
     export default {
         name: 'MaintPage',
 
         props: {
             msg: String
+        },
+        components: {
+            'navbar': Navbar
         },
         data() {
             return {
@@ -111,7 +88,7 @@
         },
         // Fetches projects when the component is created.
         created() {
-            axios.get('http://localhost:5000/contributorapi/list')
+            axios.get('http://localhost:5000/api/list')
                 .then(response => {
                     this.projects = response.data;
                 })
@@ -195,6 +172,7 @@
         padding-right: 1rem !important;
         padding-left: 1rem !important;
     }
+
     #search {
         width: 83%;
     }
