@@ -13,24 +13,8 @@
 
         <div class="container-fluid projectlist-container">
             <div class="container">
-                <div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <select class="form-control" id="category">
-                                <option>Select category
-                                </option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <form class="form-inline my-2 my-lg-0">
-                                <input class="form-control mr-sm-2" type="text" placeholder="Search"
-                                       aria-label="Search" id="search">
-                                <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
 
+                <filter-bar></filter-bar>
                 <br>
 
                 <div class="card-columns">
@@ -58,6 +42,7 @@
     import axios from 'axios';
     import Navbar from './Navbar.vue'
     import Header from './Header.vue'
+    import FilterBar from './FilterBar.vue'
 
     export default {
         name: 'MaintPage',
@@ -67,7 +52,8 @@
         },
         components: {
             'navbar': Navbar,
-            'headerComponent': Header
+            'headerComponent': Header,
+            'filterBar': FilterBar
         },
         data() {
             return {
@@ -115,10 +101,6 @@
     .cardLogo {
         width: 10vw;
         padding-top: 1.25rem;
-    }
-
-    #search {
-        width: 83%;
     }
 
 </style>
