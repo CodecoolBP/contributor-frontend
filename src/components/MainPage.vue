@@ -68,7 +68,7 @@
         },
         // Fetches projects when the component is created.
         created() {
-            axios.get('http://localhost:5000/api/list')
+            axios.get('http://localhost:5000/api/projects')
                 .then(response => {
                     this.projects = response.data;
                 })

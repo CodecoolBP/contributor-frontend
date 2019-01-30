@@ -82,7 +82,7 @@
 
                 //const formData = new FormData();
                 //formData.append(this.selectedFile, this.selectedFile.name);
-                axios.post('http://localhost:5000/contributorapi/project/add', jsonData, {
+                axios.post('http://localhost:5000/api/project/add', jsonData, {
                         headers: {
                             'Content-Type': 'application/json',
                         }
