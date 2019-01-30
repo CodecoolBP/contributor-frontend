@@ -73,7 +73,7 @@
                 formData["title"] = this.title;
                 formData["description"] = this.desc;
                 formData["shortDesc"] = this.shortdesc;
-                formData["organization"] = this.org;
+                formData["organisation"] = this.org;
                 formData["requirements"] = this.req;
                 formData["tags"] = this.tags.split(",");
                 let jsonData = JSON.stringify(formData);

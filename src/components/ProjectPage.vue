@@ -24,7 +24,7 @@
 
                             <div class="col-md-8">
 
-                                <h1 class="title display-3">{{project.name}}</h1><br><br>
+                                <h1 class="title display-3">{{project.title}}</h1><br><br>
 
                                 <div class="row">
                                     <div class="col-md-4">
