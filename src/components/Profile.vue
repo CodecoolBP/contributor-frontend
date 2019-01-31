@@ -129,6 +129,8 @@
 
     .container-fluid {
         padding: 0;
+        background-color: #fffcf2;
+        min-height: 100vh;
     }
 
     .leftProfile {
@@ -144,6 +146,8 @@
         box-shadow: 6px 7px 17px -6px rgba(0, 0, 0, 0.75);
         border: 1px solid rgba(169, 169, 169, 0.29);
         text-align: center;
+        background-color: white;
+
     }
 
     .row {
@@ -163,14 +167,7 @@
         font-size: 1.2rem;
         margin-top: 2vh;
     }
-    .container-fluid{
-        background-color: #fffcf2;
-        min-height: 100vh;
-    }
 
-    .container{
-        background-color: white;
-    }
 
     #email {
         margin-top: 3vh;
