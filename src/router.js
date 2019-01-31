@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import MainPage from './components/MainPage.vue'
 import AddProject from './components/AddProject.vue'
 import ProjectPage from './components/ProjectPage.vue'
+import Profile from './components/Profile.vue'
 import EditProject from './components/EditProject.vue'
 
 Vue.use(Router);
@@ -33,6 +34,11 @@ export default new Router({
             path: '/projects/:id/edit',
             name: 'project_page',
             component: EditProject
+        },
+        {
+            path: '/profile/:id',
+            name: 'profile',
+            component: Profile
         }
     ]
 })

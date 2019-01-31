@@ -98,6 +98,7 @@
         background-color: #fffcf2;
         padding-top: 3vh;
         padding-bottom: 5vh;
+        min-height: 70vh;
     }
 
     .card {
