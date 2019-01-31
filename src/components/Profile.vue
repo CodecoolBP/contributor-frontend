@@ -28,7 +28,7 @@
                                                           aria-hidden="true"></span>
                                                     <span><strong>View</strong></span>
                                                 </a>
-                                                <a href="#" class="btn btn-info a-btn-slide-text">
+                                                <a v-bind:href="'#/projects/'+ project.id + '/edit'" class="btn btn-info a-btn-slide-text">
                                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                                     <span><strong>Edit</strong></span>
                                                 </a>
