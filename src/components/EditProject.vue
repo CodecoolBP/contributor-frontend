@@ -36,6 +36,7 @@
                     <input type="file" id="img-upload" @change="onFileChanged" required>
                 </div>
             </form>
+            <br>
             <a v-bind:href="'#/projects/'+ project.id" class="btn btn-success" @click="onUpload">Save project</a>
 
         </div>
@@ -127,5 +128,11 @@
 
     h2 {
         text-align: center;
+    }
+
+    .btn {
+        margin:0 auto;
+        display:block;
+        width: 10vw;
     }
 </style>
