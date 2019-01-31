@@ -30,7 +30,7 @@ export default new Router({
             component: ProjectPage
         },
         {
-            path: '/profile',
+            path: '/profile/:id',
             name: 'profile',
             component: Profile
         }
