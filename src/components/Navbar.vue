@@ -18,7 +18,7 @@
             <div class="navbar-collapse collapse w-100 dual-collapse2 order-2 order-md-2">
                 <ul class="navbar-nav mr-auto text-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Add new project</a>
+                        <a class="nav-link" href="#/add">Add new project</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
