@@ -22,23 +22,21 @@
                                             <h4 class="card-title">{{project.title}}</h4>
                                             <p class="card-text">{{project.shortDesc}}</p>
                                             <div class="row">
-                                                <a v-bind:href="'#/projects/'+ project.id"
-                                                   class="btn btn-info a-btn-slide-text">
-                                                    <span class="glyphicon glyphicon-eye-open"
-                                                          aria-hidden="true"></span>
-                                                    <span><strong>View</strong></span>
-                                                </a>
-                                                <a v-bind:href="'#/projects/'+ project.id + '/edit'" class="btn btn-info a-btn-slide-text">
-                                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                                    <span><strong>Edit</strong></span>
-                                                </a>
-                                                <a :data-id="project.id" @click="deleteProject"
-                                                   class="btn btn-info a-btn-slide-text">
-                                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                                    <span><strong>Delete</strong></span>
-                                                </a>
+                                                <div class="buttons">
+                                                    <a v-bind:href="'#/projects/'+ project.id"
+                                                       class="btn btn-info a-btn-slide-text">
+                                                        <span><strong>View</strong></span>
+                                                    </a>
+                                                    <a v-bind:href="'#/projects/'+ project.id + '/edit'"
+                                                       class="btn btn-info a-btn-slide-text">
+                                                        <span><strong>Edit</strong></span>
+                                                    </a>
+                                                    <a :data-id="project.id" @click="deleteProject"
+                                                       class="btn btn-info a-btn-slide-text">
+                                                        <span><strong>Delete</strong></span>
+                                                    </a>
+                                                </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -109,8 +107,9 @@
 
 <style scoped>
     .a-btn-slide-text {
-        color: white;
+        color: white !important;
     }
+
     .btn:hover {
         -webkit-transform: scale(1.1);
         -moz-transform: scale(1.1);
@@ -167,14 +166,18 @@
         margin-top: 2vh;
     }
 
-
     #email {
         margin-top: 3vh;
         color: white;
         font-weight: bolder;
     }
 
-    .card-title, .card-text{
+    .card-title, .card-text {
         font-size: 1.1rem;
+    }
+
+    .buttons{
+        float: left;
+        width: 100%;
     }
 </style>
