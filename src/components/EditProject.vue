@@ -69,8 +69,6 @@
                 axios.get('http://localhost:5000/api/project/' + this.$route.params.id + '/')
                     .then(response => {
                         this.project = response.data;
-                        console.log("resp: " + response.data);
-                        console.log("proj" + this.project)
                     })
                     .catch(e => {
                         this.errors.push(e)
