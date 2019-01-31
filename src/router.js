@@ -32,7 +32,7 @@ export default new Router({
         },
         {
             path: '/projects/:id/edit',
-            name: 'project_page',
+            name: 'project_page_edit',
             component: EditProject
         },
         {
