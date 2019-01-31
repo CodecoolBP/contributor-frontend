@@ -23,7 +23,7 @@
                             <div class="card">
                                 <img class="cardLogo" v-bind:src=getImage(project.id) alt="Card image cap">
                                 <div class="card-body">
-                                    <h4 class="card-title">{{project.name}}</h4>
+                                    <h4 class="card-title">{{project.title}}</h4>
                                     <p class="card-text">{{project.shortDesc}}</p>
                                     <a v-bind:href="'#/projects/'+ project.id" class="btn btn-info">I'm
                                         interested!</a>
@@ -68,7 +68,7 @@
         },
         // Fetches projects when the component is created.
         created() {
-            axios.get('http://localhost:5000/api/list')
+            axios.get('http://localhost:5000/api/projects')
                 .then(response => {
                     this.projects = response.data;
                 })

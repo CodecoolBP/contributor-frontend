@@ -2,9 +2,9 @@
     <div class="container">
         <form>
             <div class="form-group">
-                <label for="name">Project name</label>
-                <input type="text" class="form-control" id="name" v-model="name" maxlength="25"
-                       placeholder="Project name" required>
+                <label for="title">Project title</label>
+                <input type="text" class="form-control" id="title" v-model="title" maxlength="25"
+                       placeholder="Project title" required>
             </div>
             <div class="form-group">
                 <label for="desc">Description</label>
@@ -53,7 +53,7 @@
         name: "AddProject",
         data() {
             return {
-                name: this.$refs.name,
+                title: this.$refs.title,
                 desc: this.$refs.desc,
                 shortdesc: this.$refs.shortdesc,
                 org: this.$refs.org,
@@ -70,10 +70,10 @@
             },
             onUpload() {
                 let formData = {};
-                formData["name"] = this.name;
+                formData["title"] = this.title;
                 formData["description"] = this.desc;
                 formData["shortDesc"] = this.shortdesc;
-                formData["organization"] = this.org;
+                formData["organisation"] = this.org;
                 formData["requirements"] = this.req;
                 formData["tags"] = this.tags.split(",");
                 let jsonData = JSON.stringify(formData);
@@ -82,7 +82,7 @@
 
                 //const formData = new FormData();
                 //formData.append(this.selectedFile, this.selectedFile.name);
-                axios.post('http://localhost:5000/contributorapi/project/add', jsonData, {
+                axios.post('http://localhost:5000/api/project/add', jsonData, {
                         headers: {
                             'Content-Type': 'application/json',
                         }
