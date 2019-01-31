@@ -158,7 +158,7 @@
     }
 
     .cardLogo {
-        width: 10vw;
+        width: 7vw;
         padding-top: 1.25rem;
     }
 
@@ -172,5 +172,9 @@
         margin-top: 3vh;
         color: white;
         font-weight: bolder;
+    }
+
+    .card-title, .card-text{
+        font-size: 1.1rem;
     }
 </style>
