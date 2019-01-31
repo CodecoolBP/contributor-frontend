@@ -7,8 +7,8 @@
         <div class="container-fluid">
             <div class="container">
 
-                <div class="bigcard" v-if="projects && projects.length">
-                    <div v-for="project of projects">
+                <div class="bigcard" v-if="project">
+                    <div>
                         <div class="row">
 
                             <div class="col-md-4 col-centered">
@@ -87,7 +87,7 @@
         },
         data() {
             return {
-                projects: [],
+                project: {},
                 errors: []
             }
         },
@@ -95,9 +95,9 @@
         created() {
             axios.get('http://localhost:5000/api/project/' + this.$route.params.id + '/')
                 .then(response => {
-                    this.projects = response.data;
+                    this.project = response.data;
                     console.log("resp: " + response.data);
-                    console.log("proj" + this.projects)
+                    console.log("proj" + this.project)
                 })
                 .catch(e => {
                     this.errors.push(e)
