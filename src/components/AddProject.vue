@@ -1,6 +1,11 @@
 <template>
-    <div class="container">
-        <form>
+    <div class="container-fluid">
+        <navbar></navbar>
+
+        <div class="container">
+            <h2>Add a new project</h2>
+
+            <form>
             <div class="form-group">
                 <label for="title">Project title</label>
                 <input type="text" class="form-control" id="title" v-model="title" maxlength="25"
@@ -38,8 +43,9 @@
                 <input type="file" id="img-upload" @change="onFileChanged" required>
             </div>
         </form>
-        <button @click="onUpload">Save project</button>
+            <a href="/" class="btn btn-success" @click="onUpload">Save project</a>
 
+    </div>
     </div>
 
 </template>
@@ -48,9 +54,14 @@
     /* eslint-disable no-console */
 
     import axios from 'axios';
+    import Navbar from './Navbar.vue'
+
 
     export default {
         name: "AddProject",
+        components: {
+            'navbar': Navbar
+        },
         data() {
             return {
                 title: this.$refs.title,
@@ -94,5 +105,25 @@
 </script>
 
 <style scoped>
+    .container-fluid {
+        padding: 0;
+        background-color: #fffcf2;
+        min-height: 100vh;
+    }
 
+    .container {
+        height: 85vh;
+        overflow: auto;
+        margin-top: 4vh;
+        margin-bottom: 4vh;
+        box-shadow: 6px 7px 17px -6px rgba(0, 0, 0, 0.75);
+        border: 1px solid rgba(169, 169, 169, 0.29);
+        background-color: white;
+        padding: 4vh;
+
+    }
+
+    h2 {
+        text-align: center;
+    }
 </style>
