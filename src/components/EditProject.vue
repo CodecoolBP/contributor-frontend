@@ -86,7 +86,11 @@
                 formData["shortDesc"] = this.project.shortDesc;
                 formData["organisation"] = this.project.organisation;
                 formData["requirements"] = this.project.requirements;
-                formData["tags"] = this.project.tags.split(",");
+                if (this.project.tags != null) {
+                    formData["tags"] = this.project.tags.split(",");
+                } else {
+                    formData["tags"] = null;
+                }
                 let jsonData = JSON.stringify(formData);
 
                 //const formData = new FormData();

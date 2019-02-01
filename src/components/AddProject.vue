@@ -87,7 +87,11 @@
                 formData["shortDesc"] = this.shortdesc;
                 formData["organisation"] = this.org;
                 formData["requirements"] = this.req;
-                formData["tags"] = this.tags.split(",");
+                if (this.tags != null) {
+                    formData["tags"] = this.tags.split(",");
+                } else {
+                    formData["tags"] = null;
+                }
                 let jsonData = JSON.stringify(formData);
                 console.log(formData);
                 console.log(jsonData);
