@@ -21,7 +21,7 @@
                     <div v-if="projects && projects.length">
                         <div v-for="project of projects">
                             <div class="card">
-                                <img class="cardLogo" v-bind:src=getImage(project.id) alt="Card image cap">
+                                <img class="cardLogo" src="../assets/img/logos/logo1.png" alt="Card image cap">
                                 <div class="card-body">
                                     <h4 class="card-title">{{project.title}}</h4>
                                     <p class="card-text">{{project.shortDesc}}</p>
