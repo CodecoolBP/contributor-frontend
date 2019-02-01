@@ -37,7 +37,7 @@
                 </div>
             </form>
             <br>
-            <a v-bind:href="'#/projects/'+ project.id" class="btn btn-success" @click="onUpload">Save project</a>
+            <button class="btn btn-success" @click="onUpload">Save project</button>
 
         </div>
     </div>
@@ -97,7 +97,12 @@
                         }
                     }
                 ).then(() => {
-                    this.fetchList();
+                    let vm = this;
+                    setTimeout(function () {
+                        let url = 'http://localhost:8080/#/projects/'+vm.project.id;
+                        vm.fetchList();
+                        window.location.replace(url);
+                    },500);
                 })
                     .catch((error) => {
                         console.log(error);

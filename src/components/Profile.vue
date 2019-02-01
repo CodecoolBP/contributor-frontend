@@ -90,9 +90,7 @@
             deleteProject: function (e) {
                 let id = e.currentTarget.getAttribute('data-id');
                 axios.delete('http://localhost:5000/api/project/' + id + '/').then(() => {
-                    setTimeout(function () {
-                        this.fetchList();
-                    },500);
+                    this.fetchList();
                 })
                     .catch((error) => {
                         console.log(error);
