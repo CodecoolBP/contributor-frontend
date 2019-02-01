@@ -87,7 +87,7 @@
                 formData["organisation"] = this.project.organisation;
                 formData["requirements"] = this.project.requirements;
                 if (this.project.tags != null) {
-                    formData["tags"] = this.project.tags.split(",");
+                    formData["tags"] = this.project.tags.toString().split(",");
                 } else {
                     formData["tags"] = null;
                 }
