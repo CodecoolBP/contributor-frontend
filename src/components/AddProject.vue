@@ -8,7 +8,7 @@
             <form>
             <div class="form-group">
                 <label for="title">Project title</label>
-                <input type="text" class="form-control" id="title" v-model="title" maxlength="25"
+                <input type="text" class="form-control" id="title" v-model="title" maxlength="50"
                        placeholder="Project title" required>
             </div>
             <div class="form-group">
@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <label for="shortdesc">Short description</label>
-                <input type="text" class="form-control" id="shortdesc" v-model="shortdesc" maxlength="42"
+                <input type="text" class="form-control" id="shortdesc" v-model="shortdesc" maxlength="100"
                        placeholder="Short description to grab the contributor's attention" required>
             </div>
             <div class="form-group">
