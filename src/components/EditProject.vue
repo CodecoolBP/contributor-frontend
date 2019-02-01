@@ -8,7 +8,7 @@
                 <div class="form-group">
                     <label for="title">Project title</label>
                     <input type="text" class="form-control" ref="title" id="title" v-model="project.title"
-                           maxlength="25" required>
+                           maxlength="50" required>
                 </div>
                 <div class="form-group">
                     <label for="desc">Description</label>
@@ -16,7 +16,7 @@
                 </div>
                 <div class="form-group">
                     <label for="shortdesc">Short description</label>
-                    <input type="text" class="form-control" id="shortdesc" v-model="project.shortDesc" maxlength="42"
+                    <input type="text" class="form-control" id="shortdesc" v-model="project.shortDesc" maxlength="100"
                            required>
                 </div>
                 <div class="form-group">
@@ -37,7 +37,7 @@
                 </div>
             </form>
             <br>
-            <a v-bind:href="'#/projects/'+ project.id" class="btn btn-success" @click="onUpload">Save project</a>
+            <button class="btn btn-success" @click="onUpload">Save project</button>
 
         </div>
     </div>
@@ -101,7 +101,12 @@
                         }
                     }
                 ).then(() => {
-                    this.fetchList();
+                    let vm = this;
+                    setTimeout(function () {
+                        let url = 'http://localhost:8080/#/projects/'+vm.project.id;
+                        vm.fetchList();
+                        window.location.replace(url);
+                    },500);
                 })
                     .catch((error) => {
                         console.log(error);
