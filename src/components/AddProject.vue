@@ -44,7 +44,7 @@
             </div>
         </form>
             <br>
-            <a href="/" class="btn btn-success" @click="onUpload">Save project</a>
+            <button class="btn btn-success" @click="onUpload">Save project</button>
 
     </div>
     </div>
@@ -80,30 +80,56 @@
             onFileChanged(event) {
                 this.selectedFile = event.target.files[0]
             },
-            onUpload() {
-                let formData = {};
-                formData["title"] = this.title;
-                formData["description"] = this.desc;
-                formData["shortDesc"] = this.shortdesc;
-                formData["organisation"] = this.org;
-                formData["requirements"] = this.req;
-                if (this.tags != null) {
-                    formData["tags"] = this.tags.split(",");
+            fileConversion() {
+                if (this.selectedFile != null) {
+                    return new Promise((resolve, reject) => {
+                        let reader = new FileReader();
+                        reader.onloadend = function() {
+                            let base64Image = reader.result;
+                            resolve(base64Image);
+                        };
+                        reader.readAsDataURL(this.selectedFile);
+                    });
                 } else {
-                    formData["tags"] = null;
+                    return new Promise(resolve => resolve(null))
                 }
-                let jsonData = JSON.stringify(formData);
-                console.log(formData);
-                console.log(jsonData);
-
-                //const formData = new FormData();
-                //formData.append(this.selectedFile, this.selectedFile.name);
-                axios.post('http://localhost:5000/api/project/add', jsonData, {
-                        headers: {
-                            'Content-Type': 'application/json',
-                        }
+            },
+            onUpload() {
+                let promise = this.fileConversion();
+                promise.then((base64Image) => {
+                    let formData = {};
+                    formData["title"] = this.title;
+                    formData["description"] = this.desc;
+                    formData["shortDesc"] = this.shortdesc;
+                    formData["organisation"] = this.org;
+                    formData["requirements"] = this.req;
+                    if (this.tags != null) {
+                        formData["tags"] = this.tags.split(",");
+                    } else {
+                        formData["tags"] = null;
                     }
-                )
+                    formData["image"] = base64Image;
+                    let jsonData = JSON.stringify(formData);
+                    console.log(formData);
+                    console.log(jsonData);
+
+                    //const formData = new FormData();
+                    //formData.append(this.selectedFile, this.selectedFile.name);
+                    axios.post('http://localhost:5000/api/project/add', jsonData, {
+                            headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        }
+                    ).then(() => {
+                        setTimeout(function () {
+                            let url = 'http://localhost:8080/#/';
+                            window.location.replace(url);
+                        },500);
+                    })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                });
             }
         }
     }

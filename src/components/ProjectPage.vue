@@ -12,7 +12,7 @@
                         <div class="row">
 
                             <div class="col-md-4 col-centered">
-                                <img class="logo" alt="Vue logo" src="../assets/img/logos/logo1.png">
+                                <img class="logo" alt="Vue logo" v-bind:src="project.image">
                                 <br><br>
                                 <p class="ptitle">Status: {{project.status}}</p>
                                 <p class="ptitle">Tags:
@@ -88,7 +88,8 @@
         data() {
             return {
                 project: {},
-                errors: []
+                errors: [],
+                image: null
             }
         },
         // Fetches projects when the component is created.
