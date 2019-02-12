@@ -79,41 +79,59 @@
                     })
             },
             onFileChanged(event) {
-                this.selectedFile = event.target.files[0]
+                this.selectedFile = event.target.files[0];
+            },
+            fileConversion() {
+                if (this.selectedFile != null) {
+                    return new Promise((resolve, reject) => {
+                        let reader = new FileReader();
+                        reader.onloadend = function() {
+                            let base64Image = reader.result;
+                            resolve(base64Image);
+                        };
+                        reader.readAsDataURL(this.selectedFile);
+                    });
+                } else {
+                    return new Promise(resolve => resolve(null))
+                }
             },
             onUpload() {
-                let formData = {};
-                formData["id"] = this.project.id;
-                formData["title"] = this.project.title;
-                formData["description"] = this.project.description;
-                formData["shortDesc"] = this.project.shortDesc;
-                formData["organisation"] = this.project.organisation;
-                formData["requirements"] = this.project.requirements;
-                if (this.project.tags != null) {
-                    formData["tags"] = this.project.tags.split(",");
-                } else {
-                    formData["tags"] = null;
-                }
-                let jsonData = JSON.stringify(formData);
-
-                //const formData = new FormData();
-                //formData.append(this.selectedFile, this.selectedFile.name);
-                axios.put('http://localhost:5000/api/project/' + this.$route.params.id, jsonData, {
-                        headers: {
-                            'Content-Type': 'application/json',
-                        }
+                let promise = this.fileConversion();
+                promise.then((base64Image) => {
+                    let formData = {};
+                    formData["id"] = this.project.id;
+                    formData["title"] = this.project.title;
+                    formData["description"] = this.project.description;
+                    formData["shortDesc"] = this.project.shortDesc;
+                    formData["organisation"] = this.project.organisation;
+                    formData["requirements"] = this.project.requirements;
+                    if (this.project.tags != null) {
+                        formData["tags"] = this.project.tags.toString().split(",");
+                    } else {
+                        formData["tags"] = null;
                     }
-                ).then(() => {
-                    let vm = this;
-                    setTimeout(function () {
-                        let url = 'http://localhost:8080/#/projects/'+vm.project.id;
-                        vm.fetchList();
-                        window.location.replace(url);
-                    },500);
-                })
-                    .catch((error) => {
-                        console.log(error);
-                    });
+                    formData["image"] = base64Image;
+                    let jsonData = JSON.stringify(formData);
+
+                    //const formData = new FormData();
+                    //formData.append(this.selectedFile, this.selectedFile.name);
+                    axios.put('http://localhost:5000/api/project/' + this.$route.params.id, jsonData, {
+                            headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        }
+                    ).then(() => {
+                        let vm = this;
+                        setTimeout(function () {
+                            let url = 'http://localhost:8080/#/projects/'+vm.project.id;
+                            vm.fetchList();
+                            window.location.replace(url);
+                        },500);
+                    })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                });
             }
         }
     }
