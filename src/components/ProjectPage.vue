@@ -1,5 +1,6 @@
 <template>
     <div class="projectPageBack">
+        <vue-headful :title="project.title" />
         <div class="container-fluid">
             <navbar></navbar>
         </div>
@@ -76,6 +77,7 @@
 
     import axios from 'axios';
     import Navbar from './Navbar.vue'
+    import vueHeadful from 'vue-headful';
 
     export default {
         name: 'ProjectPage',
@@ -83,7 +85,8 @@
             msg: String
         },
         components: {
-            'navbar': Navbar
+            'navbar': Navbar,
+            'vue-headful': vueHeadful,
         },
         data() {
             return {

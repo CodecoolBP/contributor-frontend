@@ -1,5 +1,6 @@
 <template>
     <div class="container-fluid">
+        <vue-headful title="Add project"/>
         <navbar></navbar>
 
         <div class="container">
@@ -56,12 +57,14 @@
 
     import axios from 'axios';
     import Navbar from './Navbar.vue'
+    import vueHeadful from 'vue-headful';
 
 
     export default {
         name: "AddProject",
         components: {
-            'navbar': Navbar
+            'navbar': Navbar,
+            'vue-headful': vueHeadful,
         },
         data() {
             return {

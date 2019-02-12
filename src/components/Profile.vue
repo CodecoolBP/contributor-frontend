@@ -1,5 +1,6 @@
 <template>
     <div>
+        <vue-headful title="Profile"/>
         <div class="container-fluid">
             <navbar></navbar>
             <div class="container">
@@ -63,11 +64,13 @@
 
     import axios from 'axios';
     import Navbar from './Navbar.vue'
+    import vueHeadful from 'vue-headful';
 
     export default {
         name: "Profile",
         components: {
-            'navbar': Navbar
+            'navbar': Navbar,
+            'vue-headful': vueHeadful,
         },
         data() {
             return {

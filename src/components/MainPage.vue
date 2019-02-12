@@ -1,6 +1,9 @@
 <template>
 
+
+
     <div id="app">
+        <vue-headful title="Contributor"/>
         <div class="container-fluid headercontainer">
             <div class="container">
 
@@ -45,6 +48,7 @@
     import Navbar from './Navbar.vue'
     import Header from './Header.vue'
     import FilterBar from './FilterBar.vue'
+    import vueHeadful from 'vue-headful';
 
     export default {
         name: 'MaintPage',
@@ -55,7 +59,8 @@
         components: {
             'navbar': Navbar,
             'headerComponent': Header,
-            'filterBar': FilterBar
+            'filterBar': FilterBar,
+            'vue-headful': vueHeadful,
         },
         data() {
             return {
