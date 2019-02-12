@@ -112,7 +112,7 @@
 <style scoped>
     .container-fluid {
         padding: 0;
-        background-color: #fffcf2;
+        background-color: #ffe5d0;
         min-height: 100vh;
     }
 

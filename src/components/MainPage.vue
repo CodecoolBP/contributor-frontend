@@ -20,11 +20,13 @@
                 <div class="card-columns">
                     <div v-if="projects && projects.length">
                         <div v-for="project of projects">
-                            <div class="card">
+                            <div class="card" @mouseover="hoverCard(index)"
+                                 @mouseout="hoverCard(-1)">
+
                                 <img class="cardLogo" src="../assets/img/logos/logo1.png" alt="Card image cap">
                                 <div class="card-body">
                                     <h4 class="card-title">{{project.title}}</h4>
-                                    <p class="card-text">{{project.shortDesc}}</p>
+                                    <p class="card-text">{{ project.shortDesc | truncate(25, ' ...') }}</p>
                                     <a v-bind:href="'#/projects/'+ project.id" class="btn btn-info">I'm
                                         interested!</a>
                                 </div>
@@ -64,20 +66,33 @@
 
             getImage(currentId) {
                 return "../assets/img/logos/logo" + currentId + ".png"
-            }
-        },
-        // Fetches projects when the component is created.
-        created() {
-            axios.get('http://localhost:5000/api/projects')
-                .then(response => {
-                    this.projects = response.data;
-                })
-                .catch(e => {
-                    this.errors.push(e)
-                })
-        },
+            },
 
-    }
+            hoverCard(selectedIndex) {
+                this.selectedCard = selectedIndex
+            },
+            isSelected(cardIndex) {
+                return this.selectedCard === cardIndex
+            }
+
+        }, filters: {
+            truncate: function (text, length, suffix) {
+                return text.substring(0, length) + suffix;
+                },
+            },
+
+            // Fetches projects when the component is created.
+            created() {
+                axios.get('http://localhost:5000/api/projects')
+                    .then(response => {
+                        this.projects = response.data;
+                    })
+                    .catch(e => {
+                        this.errors.push(e)
+                    })
+            },
+
+        }
 </script>
 
 <style scoped>
@@ -95,15 +110,20 @@
     }
 
     .projectlist-container {
-        background-color: #fffcf2;
+        background-color: #ffe5d0;
         padding-top: 3vh;
         padding-bottom: 5vh;
         min-height: 70vh;
     }
 
     .card {
-        box-shadow: 6px 7px 17px -6px rgba(0, 0, 0, 0.75);
-        display: inline-block
+        box-shadow: 8px 8px 17px -6px rgba(0, 0, 0, 0.5);
+        display: inline-block;
+        transition: height 0.4s, box-shadow 0.4s;
+    }
+
+    .card:hover {
+        box-shadow: 12px 12px 12px 0px rgba(0,0,0,0.4);
     }
 
     .cardLogo {

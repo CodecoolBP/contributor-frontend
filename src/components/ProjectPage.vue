@@ -17,7 +17,7 @@
                                 <p class="ptitle">Status: {{project.status}}</p>
                                 <p class="ptitle">Tags:
                                     <span v-for="tag in project.tags">
-                                <span>{{tag}}  </span>
+                                <span> {{tag}} </span>
                             </span>
                                 </p>
                             </div>
@@ -151,7 +151,7 @@
     }
 
     .projectPageBack {
-        background-color: #fffcf2;
+        background-color: #ffe5d0;
         margin: 0;
         height: 100%;
     }
