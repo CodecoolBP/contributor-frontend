@@ -2,8 +2,10 @@
     <div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <select class="form-control" id="category">
-                    <option>Select category</option>
+                <select class="form-control" id="category" v-model="selected" @change="statusChange">
+                    <option value="OPEN">Open projects</option>
+                    <option value="CLOSED">Closed projects</option>
+                    <option value="INPROGRESS">In progress</option>
                 </select>
             </div>
             <div class="form-group col-md-6">
@@ -18,7 +20,20 @@
 </template>
 
 <script>
-    export default {}
+    export default {
+
+        data() {
+
+            return {
+                selected: "OPEN"
+            }
+        },
+        methods: {
+            statusChange() {
+                this.$parent.statusFilter(this.selected);
+            }
+        }
+    }
 </script>
 
 <style scoped>

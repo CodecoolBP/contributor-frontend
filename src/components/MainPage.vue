@@ -25,7 +25,6 @@
                         <div v-for="project of projects">
                             <div class="card" @mouseover="hoverCard(index)"
                                  @mouseout="hoverCard(-1)">
-
                                 <img class="cardLogo" src="../assets/img/logos/logo1.png" alt="Card image cap">
                                 <div class="card-body">
                                     <h4 class="card-title">{{project.title}}</h4>
@@ -66,8 +65,10 @@
             return {
                 projects: [],
                 errors: [],
+                filterBar: []
             }
-        }, methods: {
+        },
+        methods: {
 
             getImage(currentId) {
                 return "../assets/img/logos/logo" + currentId + ".png"
@@ -78,9 +79,24 @@
             },
             isSelected(cardIndex) {
                 return this.selectedCard === cardIndex
+            },
+
+            statusFilter(status) {
+                console.log(status);
+                axios.get('http://localhost:5000/api/projects/filter?status=' + status)
+                    .then(response => {
+                        this.projects = response.data;
+                        this.$forceUpdate();
+                    })
+                    .catch(e => {
+                        this.errors.push(e)
+                    })
+
+
             }
 
-        }, filters: {
+        },
+        filters: {
             truncate: function (text, length, suffix) {
                 return text.substring(0, length) + suffix;
                 },
