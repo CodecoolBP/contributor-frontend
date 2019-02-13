@@ -3,8 +3,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <select class="form-control" id="category">
-                    <option>Select category
-                    </option>
+                    <option>Select category</option>
                 </select>
             </div>
             <div class="form-group col-md-6">
