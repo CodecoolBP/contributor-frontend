@@ -12,7 +12,7 @@
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="text" placeholder="Search"
                            aria-label="Search" id="search">
-                    <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
+                    <button class="btn btn-info my-2 my-sm-0" @click="search" type="button">Search</button>
                 </form>
             </div>
         </div>
@@ -31,6 +31,11 @@
         methods: {
             statusChange() {
                 this.$parent.statusFilter(this.selected);
+            },
+            search(){
+                let keyword = document.getElementById('search').value;
+                let searchFunction = this.$parent.search;
+                this.$parent.fetchList(searchFunction, keyword);
             }
         }
     }

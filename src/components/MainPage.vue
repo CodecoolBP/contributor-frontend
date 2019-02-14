@@ -93,6 +93,34 @@
                     })
 
 
+            },
+
+            fetchList(search, keyword){
+                axios.get('http://localhost:5000/api/projects')
+                    .then(response => {
+                        this.projects = response.data;
+                        if (search && keyword){
+                            search(keyword);
+                        }
+                    })
+                    .catch(e => {
+                        this.errors.push(e)
+                    })
+            },
+
+             search(keyword){
+                let filteredProjects = [];
+                for (let project of this.projects){
+                    for (let key in project){
+                        if (project.hasOwnProperty(key) && typeof project[key] == "string" && project[key].includes(keyword)){
+                            filteredProjects.push(project);
+                            break
+                        }
+                    }
+                }
+                this.projects = filteredProjects;
+                this.$forceUpdate();
+
             }
 
         },
@@ -104,13 +132,7 @@
 
             // Fetches projects when the component is created.
             created() {
-                axios.get('http://localhost:5000/api/projects')
-                    .then(response => {
-                        this.projects = response.data;
-                    })
-                    .catch(e => {
-                        this.errors.push(e)
-                    })
+                this.fetchList();
             },
 
         }
