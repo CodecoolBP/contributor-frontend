@@ -22,7 +22,7 @@
 
                 <div class="card-columns">
                     <div v-if="projects && projects.length">
-                        <div v-for="project of projects">
+                        <div v-for="project of projects" :key="project.id">
                             <div class="card" @mouseover="hoverCard(index)"
                                  @mouseout="hoverCard(-1)">
 
@@ -45,19 +45,13 @@
 
 <script>
     import axios from 'axios';
-    import Navbar from './Navbar.vue'
-    import Header from './Header.vue'
-    import FilterBar from './FilterBar.vue'
+    import Header from './Header.vue';
+    import FilterBar from './FilterBar.vue';
     import vueHeadful from 'vue-headful';
-
     export default {
-        name: 'MaintPage',
-
-        props: {
-            msg: String
-        },
+        name: 'MainPage',
+        props: ['auth','authenticated'],
         components: {
-            'navbar': Navbar,
             'headerComponent': Header,
             'filterBar': FilterBar,
             'vue-headful': vueHeadful,
@@ -68,7 +62,6 @@
                 errors: [],
             }
         }, methods: {
-
             getImage(currentId) {
                 return "../assets/img/logos/logo" + currentId + ".png"
             },

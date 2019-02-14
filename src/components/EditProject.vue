@@ -48,13 +48,13 @@
     /* eslint-disable no-console */
 
     import axios from 'axios';
-    import Navbar from './Navbar.vue'
+    import navbar from './Navbar.vue'
     import vueHeadful from 'vue-headful';
 
     export default {
         name: "EditProject",
         components: {
-            'navbar': Navbar,
+            'navbar': navbar,
             'vue-headful': vueHeadful,
         },
         data() {

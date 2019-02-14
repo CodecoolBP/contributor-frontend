@@ -76,7 +76,6 @@
     /* eslint-disable no-console */
 
     import axios from 'axios';
-    import Navbar from './Navbar.vue'
     import vueHeadful from 'vue-headful';
 
     export default {
@@ -85,7 +84,6 @@
             msg: String
         },
         components: {
-            'navbar': Navbar,
             'vue-headful': vueHeadful,
         },
         data() {

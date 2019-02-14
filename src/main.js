@@ -5,11 +5,14 @@ import router from './router'
 import './assets/css/css-reset.css'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import navbar from './components/Navbar.vue'
 
 
 Vue.config.productionTip = false;
+Vue.component('navbar', navbar);
 
 new Vue({
     router,
     render: h => h(App),
 }).$mount('#app');
+

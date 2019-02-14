@@ -5,15 +5,22 @@ import AddProject from './components/AddProject.vue'
 import ProjectPage from './components/ProjectPage.vue'
 import Profile from './components/Profile.vue'
 import EditProject from './components/EditProject.vue'
+import Callback from './components/Callback.vue'
 
 Vue.use(Router);
 
 export default new Router({
+    mode: 'history',
     routes: [
         {
             path: '/',
             name: 'home',
             component: MainPage,
+        },
+        {
+            path: '/callback',
+            name: 'callback',
+            component: Callback,
         },
         {
             path: '/add',
