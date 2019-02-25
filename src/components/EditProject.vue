@@ -70,7 +70,11 @@
         },
         methods: {
             fetchList: function () {
-                axios.get('http://localhost:5000/api/project/' + this.$route.params.id + '/')
+                axios.get('http://localhost:5000/api/project/' + this.$route.params.id + '/', {
+                    headers: {
+                        Authorization : 'Bearer ' + localStorage.getItem('accessToken')
+                    }
+                })
                     .then(response => {
                         this.project = response.data;
                     })
@@ -118,6 +122,7 @@
                     axios.put('http://localhost:5000/api/project/' + this.$route.params.id, jsonData, {
                             headers: {
                                 'Content-Type': 'application/json',
+                                Authorization : 'Bearer ' + localStorage.getItem('accessToken')
                             }
                         }
                     ).then(() => {

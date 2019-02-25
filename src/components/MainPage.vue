@@ -29,7 +29,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title">{{project.title}}</h4>
                                     <p class="card-text">{{ project.shortDesc | truncate(25, ' ...') }}</p>
-                                    <a v-bind:href="'#/projects/'+ project.id" class="btn btn-info">I'm
+                                    <a v-bind:href="'projects/'+ project.id" class="btn btn-info">I'm
                                         interested!</a>
                                 </div>
                             </div>
@@ -90,8 +90,11 @@
 
             statusFilter(status) {
                 console.log(status);
-                axios.get('http://localhost:5000/api/projects/filter?status=' + status)
-                    .then(response => {
+                axios.get('http://localhost:5000/api/projects/filter?status=' + status, {
+                    headers: {
+                        Authorization : 'Bearer ' + localStorage.getItem('accessToken')
+                    }
+                }).then(response => {
                         this.projects = response.data;
                         this.$forceUpdate();
                     })
