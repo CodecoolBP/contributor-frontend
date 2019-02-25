@@ -99,8 +99,12 @@
 
             // Fetches projects when the component is created.
             created() {
-                axios.get('http://localhost:5000/api/projects')
-                    .then(response => {
+            console.log(localStorage.getItem('accessToken'));
+                axios.get('http://localhost:5000/api/projects', {
+                    headers: {
+                            Authorization : 'Bearer ' + localStorage.getItem('accessToken')
+                    }
+                }).then(response => {
                         this.projects = response.data;
                     })
                     .catch(e => {
