@@ -16,30 +16,33 @@ class AuthService {
         responseType: 'token id_token',
         scope: 'openid',
         audience: 'https://contributor/api',
-        redirectUri: 'http://localhost:8080/callback',
+        redirectUri: 'http://localhost:8080',
     });
 
     login () {
         this.auth0.authorize()
     }
 
-    handleAuthentication () {
+    handleAuthentication (fn) {
         this.auth0.parseHash((err, authResult) => {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 this.setSession(authResult);
                 router.replace('/')
+                fn()
             } else if (err) {
                 router.replace('/');
-                console.log(err);
+                // console.log(err);
             }
         })
     }
 
     setSession (authResult) {
         this.accessToken = authResult.accessToken;
+        localStorage.setItem('accessToken', this.accessToken);
         this.idToken = authResult.idToken;
+        localStorage.setItem('idToken', this.idToken);
         this.expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
-
+        localStorage.setItem('expiresAt', this.expiresAt);
         this.authNotifier.emit('authChange', { authenticated: true });
 
         localStorage.setItem('loggedIn', true)
@@ -51,7 +54,7 @@ class AuthService {
                 this.setSession(authResult)
             } else if (err) {
                 this.logout();
-                console.log(err);
+                // console.log(err);
             }
         })
     }
@@ -59,8 +62,11 @@ class AuthService {
     logout () {
         // Clear access token and ID token from local storage
         this.accessToken = null;
+        localStorage.removeItem("accessToken");
         this.idToken = null;
+        localStorage.removeItem("idToken");
         this.expiresAt = null;
+        localStorage.removeItem("expiresAt");
 
         this.userProfile = null;
         this.authNotifier.emit('authChange', false);
@@ -68,7 +74,8 @@ class AuthService {
         localStorage.removeItem('loggedIn');
 
         // navigate to the home route
-        router.replace('/')
+        router.replace('/');
+        location.reload();
     }
 
     getAuthenticatedFlag () {
@@ -76,8 +83,8 @@ class AuthService {
     }
 
     isAuthenticated () {
-        return new Date().getTime() < this.expiresAt && this.getAuthenticatedFlag() === 'true'
+        return new Date().getTime() < localStorage.getItem("expiresAt") && this.getAuthenticatedFlag() === 'true'
     }
 }
 
-export default new AuthService()
+export default AuthService = new AuthService();

@@ -30,7 +30,7 @@
                         <a class="nav-link" href="#" v-if="!authenticated" @click="login">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" v-if="authenticated">Logout</a>
+                        <a class="nav-link" href="#" v-if="authenticated" @click="logout">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -53,17 +53,22 @@
         data () {
             return {
                 auth,
-                authenticated: auth.authenticated
+                authenticated: (localStorage.getItem('accessToken') !== null)
             }
         },
         created () {
+            console.log("created");
              auth.authNotifier.on('authChange', authState => {
                  this.authenticated = authState.authenticated
              });
 
-             if (auth.getAuthenticatedFlag() === 'true') {
+             /*if (auth.getAuthenticatedFlag() === 'true') {
                  auth.renewSession()
-             }
+             }*/
+
+             auth.handleAuthentication(()=> {
+                this.$parent.fetchList();
+             });
         },
         methods: {
             login () {
@@ -72,7 +77,7 @@
             logout () {
                 auth.logout()
             }
-        }
+        },
     }
 </script>
 

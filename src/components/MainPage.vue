@@ -65,6 +65,18 @@
                 filterBar: []
             }
         }, methods: {
+            fetchList() {
+                axios.get('http://localhost:5000/api/projects', {
+                    headers: {
+                        Authorization : 'Bearer ' + localStorage.getItem('accessToken')
+                    }
+                }).then(response => {
+                    this.projects = response.data;
+                })
+                    .catch(e => {
+                        this.errors.push(e)
+                    })
+            },
             getImage(currentId) {
                 return "../assets/img/logos/logo" + currentId + ".png"
             },
@@ -99,17 +111,7 @@
 
             // Fetches projects when the component is created.
             created() {
-            console.log(localStorage.getItem('accessToken'));
-                axios.get('http://localhost:5000/api/projects', {
-                    headers: {
-                            Authorization : 'Bearer ' + localStorage.getItem('accessToken')
-                    }
-                }).then(response => {
-                        this.projects = response.data;
-                    })
-                    .catch(e => {
-                        this.errors.push(e)
-                    })
+                this.fetchList();
             },
 
         }
