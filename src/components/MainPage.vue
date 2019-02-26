@@ -72,6 +72,9 @@
                     }
                 }).then(response => {
                     this.projects = response.data;
+                    if (search && keyword){
+                        search(keyword);
+                    }
                 })
                     .catch(e => {
                         this.errors.push(e)
@@ -103,19 +106,6 @@
                     })
 
 
-            },
-
-            fetchList(search, keyword){
-                axios.get('http://localhost:5000/api/projects')
-                    .then(response => {
-                        this.projects = response.data;
-                        if (search && keyword){
-                            search(keyword);
-                        }
-                    })
-                    .catch(e => {
-                        this.errors.push(e)
-                    })
             },
 
              search(keyword){
