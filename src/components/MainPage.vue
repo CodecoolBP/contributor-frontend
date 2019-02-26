@@ -65,7 +65,7 @@
                 filterBar: []
             }
         }, methods: {
-            fetchList() {
+            fetchList(search, keyword) {
                 axios.get('http://localhost:5000/api/projects', {
                     headers: {
                         Authorization : 'Bearer ' + localStorage.getItem('accessToken')
