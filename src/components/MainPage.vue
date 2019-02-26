@@ -1,7 +1,6 @@
 <template>
 
 
-
     <div id="app">
         <vue-headful title="Contributor"/>
         <div class="container-fluid headercontainer">
@@ -17,12 +16,12 @@
         <div class="container-fluid projectlist-container">
             <div class="container">
 
-                <filter-bar></filter-bar>
+                <filter-bar @change="onSearchInput"></filter-bar>
                 <br>
 
                 <div class="card-columns">
                     <div v-if="projects && projects.length">
-                        <div v-for="project of projects" :key="project.id">
+                        <div v-for="project of filteredProjects" :key="project.id">
                             <div class="card" @mouseover="hoverCard(index)"
                                  @mouseout="hoverCard(-1)">
                                 <img class="cardLogo" src="../assets/img/logos/logo1.png" alt="Card image cap">
@@ -47,6 +46,7 @@
     import Header from './Header.vue';
     import FilterBar from './FilterBar.vue';
     import vueHeadful from 'vue-headful';
+
     export default {
         name: 'MaintPage',
 
@@ -62,19 +62,17 @@
             return {
                 projects: [],
                 errors: [],
-                filterBar: []
+                filterBar: [],
+                search: ""
             }
         }, methods: {
-            fetchList(search, keyword) {
+            fetchList() {
                 axios.get('http://localhost:5000/api/projects', {
                     headers: {
-                        Authorization : 'Bearer ' + localStorage.getItem('accessToken')
+                        Authorization: 'Bearer ' + localStorage.getItem('accessToken')
                     }
                 }).then(response => {
                     this.projects = response.data;
-                    if (search && keyword){
-                        search(keyword);
-                    }
                 })
                     .catch(e => {
                         this.errors.push(e)
@@ -95,24 +93,32 @@
                 console.log(status);
                 axios.get('http://localhost:5000/api/projects/filter?status=' + status, {
                     headers: {
-                        Authorization : 'Bearer ' + localStorage.getItem('accessToken')
+                        Authorization: 'Bearer ' + localStorage.getItem('accessToken')
                     }
                 }).then(response => {
-                        this.projects = response.data;
-                        this.$forceUpdate();
-                    })
+                    this.projects = response.data;
+                    this.$forceUpdate();
+                })
                     .catch(e => {
                         this.errors.push(e)
                     })
 
 
             },
+            onSearchInput(value) {
+                console.log("value1: " + value);
+                console.log("value: " + value.search);
 
-             search(keyword){
+                this.search = value;
+                console.log("search changed?: " + this.search)
+
+            },
+
+            /*search(keyword) {
                 let filteredProjects = [];
-                for (let project of this.projects){
-                    for (let key in project){
-                        if (project.hasOwnProperty(key) && typeof project[key] == "string" && project[key].includes(keyword)){
+                for (let project of this.projects) {
+                    for (let key in project) {
+                        if (project.hasOwnProperty(key) && typeof project[key] == "string" && project[key].includes(keyword)) {
                             filteredProjects.push(project);
                             break
                         }
@@ -121,21 +127,30 @@
                 this.projects = filteredProjects;
                 this.$forceUpdate();
 
-            }
-
+            },*/
         },
         filters: {
             truncate: function (text, length, suffix) {
                 return text.substring(0, length) + suffix;
-                },
+            },
+        },
+
+        computed: {
+            filteredProjects() {
+                return this.projects.filter(project => {
+                    let searched = project.title.toLowerCase().includes(this.search.toLowerCase());
+                    return searched
+                })
             },
 
-            // Fetches projects when the component is created.
-            created() {
-                this.fetchList();
-            },
+        },
 
-        }
+        created() {
+            this.fetchList();
+        },
+
+    }
+
 </script>
 
 <style scoped>
@@ -147,6 +162,7 @@
         text-align: center;
         color: #2c3e50;
     }
+
     .headercontainer {
         background-color: #343a40;
         padding-bottom: 3.5vh;
@@ -166,7 +182,7 @@
     }
 
     .card:hover {
-        box-shadow: 12px 12px 12px 0px rgba(0,0,0,0.4);
+        box-shadow: 12px 12px 12px 0px rgba(0, 0, 0, 0.4);
     }
 
     .cardLogo {
