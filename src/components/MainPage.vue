@@ -106,28 +106,8 @@
 
             },
             onSearchInput(value) {
-                console.log("value1: " + value);
-                console.log("value: " + value.search);
-
                 this.search = value;
-                console.log("search changed?: " + this.search)
-
             },
-
-            /*search(keyword) {
-                let filteredProjects = [];
-                for (let project of this.projects) {
-                    for (let key in project) {
-                        if (project.hasOwnProperty(key) && typeof project[key] == "string" && project[key].includes(keyword)) {
-                            filteredProjects.push(project);
-                            break
-                        }
-                    }
-                }
-                this.projects = filteredProjects;
-                this.$forceUpdate();
-
-            },*/
         },
         filters: {
             truncate: function (text, length, suffix) {
@@ -138,16 +118,32 @@
         computed: {
             filteredProjects() {
                 return this.projects.filter(project => {
-                    let searched = project.title.toLowerCase().includes(this.search.toLowerCase());
-                    return searched
-                })
-            },
+                    let lowerSearch = this.search.toLowerCase();
+                    let titleBoolean = project.title.toLowerCase().includes(lowerSearch);
+                    let descBoolean = project.description.toLowerCase().includes(lowerSearch);
+                    let shortBoolean = project.shortDesc.toLowerCase().includes(lowerSearch);
+                    let reqBoolean = project.requirements.toLowerCase().includes(lowerSearch);
+                    let orgBoolean = project.organisation.toLowerCase().includes(lowerSearch);
+                    let tagBoolean;
+                    for (let tag of project.tags) {
+                        if (tag.toLowerCase().includes(lowerSearch)) {
+                            tagBoolean = true;
+                            break
+                        } else {
+                            tagBoolean = false;
+                        }
+                    }
+                    /*console.log("------------------------------------------------");
+                    console.log("title: " + project.title + ", titleb:" + titleBoolean + ", short: " + shortBoolean + ", descr: " + descBoolean + ", req:" + reqBoolean );*/
 
+                    return titleBoolean || descBoolean || shortBoolean || reqBoolean || orgBoolean || tagBoolean;
+                })
+            }
         },
 
         created() {
             this.fetchList();
-        },
+        }
 
     }
 

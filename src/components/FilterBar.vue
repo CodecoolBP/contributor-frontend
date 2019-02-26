@@ -10,7 +10,7 @@
             </div>
             <div class="form-group col-md-6">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search"
-                       aria-label="Search" id="search" v-model="search" >
+                       aria-label="Search" v-model="search">
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@
             },
         },
         watch: {
-            search: function() {
+            search: function () {
                 this.$emit('change', this.search);
             }
         }
@@ -41,7 +41,5 @@
 </script>
 
 <style scoped>
-    #search {
-        width: 83%;
-    }
+
 </style>
