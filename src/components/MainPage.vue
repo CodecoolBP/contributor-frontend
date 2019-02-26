@@ -21,18 +21,20 @@
 
                 <div class="card-columns">
                     <div v-if="projects && projects.length">
-                        <div v-for="project of filteredProjects" :key="project.id">
-                            <div class="card" @mouseover="hoverCard(index)"
-                                 @mouseout="hoverCard(-1)">
-                                <img class="cardLogo" src="../assets/img/logos/logo1.png" alt="Card image cap">
-                                <div class="card-body">
-                                    <h4 class="card-title">{{project.title}}</h4>
-                                    <p class="card-text">{{ project.shortDesc | truncate(25, ' ...') }}</p>
-                                    <a v-bind:href="'projects/'+ project.id" class="btn btn-info">I'm
-                                        interested!</a>
+                        <transition-group name="list" tag="p" appear>
+                            <div v-for="project of filteredProjects" :key="project.id">
+                                <div class="card list-item" @mouseover="hoverCard(index)"
+                                     @mouseout="hoverCard(-1)">
+                                    <img class="cardLogo" src="../assets/img/logos/logo1.png" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title">{{project.title}}</h4>
+                                        <p class="card-text">{{ project.shortDesc | truncate(25, ' ...') }}</p>
+                                        <a v-bind:href="'projects/'+ project.id" class="btn btn-info">I'm
+                                            interested!</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </transition-group>
                     </div>
                 </div>
 
@@ -149,8 +151,7 @@
 
 </script>
 
-<style scoped>
-    @import '/node_modules/bootstrap/scss/bootstrap.scss';
+<style scoped lang="scss">
 
     #app {
         -webkit-font-smoothing: antialiased;
@@ -178,12 +179,24 @@
     }
 
     .card:hover {
-        box-shadow: 12px 12px 12px 0px rgba(0, 0, 0, 0.4);
+        box-shadow: 12px 12px 12px 0 rgba(0, 0, 0, 0.4);
     }
 
     .cardLogo {
         width: 10vw;
         padding-top: 1.25rem;
+    }
+
+    .list-item {
+
+    }
+
+    .list-enter-active, .list-leave-active {
+        transition: all 1.5s;
+    }
+    .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+        opacity: 0;
+        transform: translateY(30px);
     }
 
 </style>
