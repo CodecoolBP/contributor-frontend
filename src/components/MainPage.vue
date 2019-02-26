@@ -187,10 +187,6 @@
         padding-top: 1.25rem;
     }
 
-    .list-item {
-
-    }
-
     .list-enter-active, .list-leave-active {
         transition: all 1.5s;
     }
