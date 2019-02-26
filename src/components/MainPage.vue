@@ -25,7 +25,7 @@
                         <div v-for="project of projects" :key="project.id">
                             <div class="card" @mouseover="hoverCard(index)"
                                  @mouseout="hoverCard(-1)">
-                                <img class="cardLogo" src="../assets/img/logos/logo1.png" alt="Card image cap">
+                                <img class="cardLogo" v-bind:src="project.image" alt="Card image cap">
                                 <div class="card-body">
                                     <h4 class="card-title">{{project.title}}</h4>
                                     <p class="card-text">{{ project.shortDesc | truncate(25, ' ...') }}</p>
