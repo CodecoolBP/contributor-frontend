@@ -83,7 +83,8 @@
             fetchList: function () {
                 axios.get('http://localhost:5000/api/user/' + this.$route.params.id + '/', {
                     headers: {
-                        Authorization : 'Bearer ' + localStorage.getItem('accessToken')
+                        Authorization : 'Bearer ' + localStorage.getItem('accessToken'),
+                        idToken : localStorage.getItem('idToken')
                     }
                 })
                     .then(response => {

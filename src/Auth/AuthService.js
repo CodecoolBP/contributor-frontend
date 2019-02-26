@@ -14,7 +14,7 @@ class AuthService {
         domain: 'contributor.eu.auth0.com',
         clientID: 'KBltFACse8MW5Awg74MaTTGqalUVngeZ',
         responseType: 'token id_token',
-        scope: 'openid',
+        scope: 'openid email',
         audience: 'https://contributor/api',
         redirectUri: 'http://localhost:8080',
     });
@@ -27,7 +27,7 @@ class AuthService {
         this.auth0.parseHash((err, authResult) => {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 this.setSession(authResult);
-                router.replace('/')
+                router.replace('/');
                 fn()
             } else if (err) {
                 router.replace('/');
