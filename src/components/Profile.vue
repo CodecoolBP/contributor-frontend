@@ -63,13 +63,13 @@
     /* eslint-disable no-console */
 
     import axios from 'axios';
-    import Navbar from './Navbar.vue'
+    import navbar from './Navbar.vue'
     import vueHeadful from 'vue-headful';
 
     export default {
         name: "Profile",
         components: {
-            'navbar': Navbar,
+            'navbar': navbar,
             'vue-headful': vueHeadful,
         },
         data() {
@@ -81,7 +81,11 @@
         },
         methods: {
             fetchList: function () {
-                axios.get('http://localhost:5000/api/user/' + this.$route.params.id + '/')
+                axios.get('http://localhost:5000/api/user/' + this.$route.params.id + '/', {
+                    headers: {
+                        Authorization : 'Bearer ' + localStorage.getItem('accessToken')
+                    }
+                })
                     .then(response => {
                         this.email = response.data.email;
                         this.projects = response.data.projects;
@@ -92,7 +96,11 @@
             },
             deleteProject: function (e) {
                 let id = e.currentTarget.getAttribute('data-id');
-                axios.delete('http://localhost:5000/api/project/' + id + '/').then(() => {
+                axios.delete('http://localhost:5000/api/project/' + id + '/', {
+                    headers: {
+                        Authorization : 'Bearer ' + localStorage.getItem('accessToken')
+                    }
+                }).then(() => {
                     this.fetchList();
                 })
                     .catch((error) => {

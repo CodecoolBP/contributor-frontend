@@ -18,7 +18,7 @@
             <div class="navbar-collapse collapse w-100 dual-collapse2 order-2 order-md-2">
                 <ul class="navbar-nav mr-auto text-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="#/add">Add new project</a>
+                        <a class="nav-link" href="/add">Add new project</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
@@ -27,20 +27,58 @@
                         <a class="nav-link" href="#">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
+                        <a class="nav-link" href="#" v-if="!authenticated" @click="login">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Logout</a>
+                        <a class="nav-link" href="#" v-if="authenticated" @click="logout">Logout</a>
                     </li>
                 </ul>
             </div>
         </nav>
+        <div class="container">
+            <router-view
+                    :auth="auth"
+                    :authenticated="authenticated">
+            </router-view>
+        </div>
 
     </div>
 </template>
 
 <script>
-    export default {}
+    import auth from '../Auth/AuthService.js';
+
+    export default {
+        name: 'navbar',
+        data () {
+            return {
+                auth,
+                authenticated: (localStorage.getItem('accessToken') !== null)
+            }
+        },
+        created () {
+            console.log("created");
+             auth.authNotifier.on('authChange', authState => {
+                 this.authenticated = authState.authenticated
+             });
+
+             /*if (auth.getAuthenticatedFlag() === 'true') {
+                 auth.renewSession()
+             }*/
+
+             auth.handleAuthentication(()=> {
+                this.$parent.fetchList();
+             });
+        },
+        methods: {
+            login () {
+                auth.login()
+            },
+            logout () {
+                auth.logout()
+            }
+        },
+    }
 </script>
 
 <style scoped>

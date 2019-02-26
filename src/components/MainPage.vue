@@ -22,14 +22,14 @@
 
                 <div class="card-columns">
                     <div v-if="projects && projects.length">
-                        <div v-for="project of projects">
+                        <div v-for="project of projects" :key="project.id">
                             <div class="card" @mouseover="hoverCard(index)"
                                  @mouseout="hoverCard(-1)">
                                 <img class="cardLogo" src="../assets/img/logos/logo1.png" alt="Card image cap">
                                 <div class="card-body">
                                     <h4 class="card-title">{{project.title}}</h4>
                                     <p class="card-text">{{ project.shortDesc | truncate(25, ' ...') }}</p>
-                                    <a v-bind:href="'#/projects/'+ project.id" class="btn btn-info">I'm
+                                    <a v-bind:href="'projects/'+ project.id" class="btn btn-info">I'm
                                         interested!</a>
                                 </div>
                             </div>
@@ -44,11 +44,9 @@
 
 <script>
     import axios from 'axios';
-    import Navbar from './Navbar.vue'
-    import Header from './Header.vue'
-    import FilterBar from './FilterBar.vue'
+    import Header from './Header.vue';
+    import FilterBar from './FilterBar.vue';
     import vueHeadful from 'vue-headful';
-
     export default {
         name: 'MaintPage',
 
@@ -56,7 +54,6 @@
             msg: String
         },
         components: {
-            'navbar': Navbar,
             'headerComponent': Header,
             'filterBar': FilterBar,
             'vue-headful': vueHeadful,
@@ -67,9 +64,19 @@
                 errors: [],
                 filterBar: []
             }
-        },
-        methods: {
-
+        }, methods: {
+            fetchList() {
+                axios.get('http://localhost:5000/api/projects', {
+                    headers: {
+                        Authorization : 'Bearer ' + localStorage.getItem('accessToken')
+                    }
+                }).then(response => {
+                    this.projects = response.data;
+                })
+                    .catch(e => {
+                        this.errors.push(e)
+                    })
+            },
             getImage(currentId) {
                 return "../assets/img/logos/logo" + currentId + ".png"
             },
@@ -83,8 +90,11 @@
 
             statusFilter(status) {
                 console.log(status);
-                axios.get('http://localhost:5000/api/projects/filter?status=' + status)
-                    .then(response => {
+                axios.get('http://localhost:5000/api/projects/filter?status=' + status, {
+                    headers: {
+                        Authorization : 'Bearer ' + localStorage.getItem('accessToken')
+                    }
+                }).then(response => {
                         this.projects = response.data;
                         this.$forceUpdate();
                     })
