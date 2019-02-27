@@ -128,7 +128,7 @@
                     ).then(() => {
                         let vm = this;
                         setTimeout(function () {
-                            let url = 'http://localhost:8080/#/projects/' + vm.project.id;
+                            let url = 'http://localhost:8080/projects/' + vm.project.id;
                             vm.fetchList();
                             window.location.replace(url);
                         }, 500);

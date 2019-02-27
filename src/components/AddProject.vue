@@ -126,7 +126,7 @@
                         }
                     ).then(() => {
                         setTimeout(function () {
-                            let url = 'http://localhost:8080/#/';
+                            let url = 'http://localhost:8080/';
                             window.location.replace(url);
                         },500);
                     })
