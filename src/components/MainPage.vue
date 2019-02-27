@@ -135,8 +135,6 @@
                             tagBoolean = false;
                         }
                     }
-                    /*console.log("------------------------------------------------");
-                    console.log("title: " + project.title + ", titleb:" + titleBoolean + ", short: " + shortBoolean + ", descr: " + descBoolean + ", req:" + reqBoolean );*/
 
                     return titleBoolean || descBoolean || shortBoolean || reqBoolean || orgBoolean || tagBoolean;
                 })
@@ -166,14 +164,12 @@
     }
 
     .projectlist-container {
-        background-color: #ffe5d0;
         padding-top: 3vh;
         padding-bottom: 5vh;
         min-height: 70vh;
     }
 
     .card {
-        box-shadow: 8px 8px 17px -6px rgba(0, 0, 0, 0.5);
         display: inline-block;
         transition: height 0.4s, box-shadow 0.4s;
     }

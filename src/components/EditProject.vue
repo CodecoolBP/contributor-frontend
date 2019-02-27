@@ -3,7 +3,7 @@
         <vue-headful title="Edit project"/>
         <navbar></navbar>
 
-        <div class="container" v-if="project">
+        <div class="container shadowedContainer" v-if="project">
             <h2>Edit your project</h2>
             <form>
                 <div class="form-group">
@@ -72,7 +72,7 @@
             fetchList: function () {
                 axios.get('http://localhost:5000/api/project/' + this.$route.params.id + '/', {
                     headers: {
-                        Authorization : 'Bearer ' + localStorage.getItem('accessToken')
+                        Authorization: 'Bearer ' + localStorage.getItem('accessToken')
                     }
                 })
                     .then(response => {
@@ -89,7 +89,7 @@
                 if (this.selectedFile != null) {
                     return new Promise((resolve, reject) => {
                         let reader = new FileReader();
-                        reader.onloadend = function() {
+                        reader.onloadend = function () {
                             let base64Image = reader.result;
                             resolve(base64Image);
                         };
@@ -122,16 +122,16 @@
                     axios.put('http://localhost:5000/api/project/' + this.$route.params.id, jsonData, {
                             headers: {
                                 'Content-Type': 'application/json',
-                                Authorization : 'Bearer ' + localStorage.getItem('accessToken')
+                                Authorization: 'Bearer ' + localStorage.getItem('accessToken')
                             }
                         }
                     ).then(() => {
                         let vm = this;
                         setTimeout(function () {
-                            let url = 'http://localhost:8080/#/projects/'+vm.project.id;
+                            let url = 'http://localhost:8080/#/projects/' + vm.project.id;
                             vm.fetchList();
                             window.location.replace(url);
-                        },500);
+                        }, 500);
                     })
                         .catch((error) => {
                             console.log(error);
@@ -145,20 +145,13 @@
 <style scoped>
     .container-fluid {
         padding: 0;
-        background-color: #fffcf2;
         min-height: 100vh;
     }
 
     .container {
         height: 85vh;
         overflow: auto;
-        margin-top: 4vh;
-        margin-bottom: 4vh;
-        box-shadow: 6px 7px 17px -6px rgba(0, 0, 0, 0.75);
-        border: 1px solid rgba(169, 169, 169, 0.29);
-        background-color: white;
         padding: 4vh;
-
     }
 
     h2 {
@@ -166,8 +159,8 @@
     }
 
     .btn {
-        margin:0 auto;
-        display:block;
+        margin: 0 auto;
+        display: block;
         width: 10vw;
     }
 </style>

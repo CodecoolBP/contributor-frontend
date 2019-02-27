@@ -3,7 +3,7 @@
         <vue-headful title="Profile"/>
         <div class="container-fluid">
             <navbar></navbar>
-            <div class="container">
+            <div class="container shadowedContainer">
                 <div class="row ">
                     <div class="col-md-3 profiles leftProfile col-centered">
                         <img class="img-fluid" id="profileImg" src="../assets/img/user.png"
@@ -28,7 +28,7 @@
                                                        class="btn btn-info a-btn-slide-text">
                                                         <span><strong>View</strong></span>
                                                     </a>
-                                                    <a v-bind:href="'#/projects/'+ project.id + '/edit'"
+                                                    <a v-bind:href="'/projects/'+ project.id + '/edit'"
                                                        class="btn btn-info a-btn-slide-text">
                                                         <span><strong>Edit</strong></span>
                                                     </a>
@@ -83,8 +83,8 @@
             fetchList: function () {
                 axios.get('http://localhost:5000/api/user/' + this.$route.params.id + '/', {
                     headers: {
-                        Authorization : 'Bearer ' + localStorage.getItem('accessToken'),
-                        idToken : localStorage.getItem('idToken')
+                        Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
+                        idToken: localStorage.getItem('idToken')
                     }
                 })
                     .then(response => {
@@ -97,9 +97,10 @@
             },
             deleteProject: function (e) {
                 let id = e.currentTarget.getAttribute('data-id');
+                debugger;
                 axios.delete('http://localhost:5000/api/project/' + id + '/', {
                     headers: {
-                        Authorization : 'Bearer ' + localStorage.getItem('accessToken')
+                        Authorization: 'Bearer ' + localStorage.getItem('accessToken')
                     }
                 }).then(() => {
                     this.fetchList();
@@ -108,7 +109,6 @@
                         console.log(error);
                     });
             }
-
         },
 
         created() {
@@ -139,25 +139,16 @@
 
     .container-fluid {
         padding: 0;
-        background-color: #fffcf2;
-        min-height: 100vh;
     }
 
     .leftProfile {
         background-color: #343a40;
-
     }
 
     .container {
         height: 85vh;
         overflow: auto;
-        margin-top: 4vh;
-        margin-bottom: 4vh;
-        box-shadow: 6px 7px 17px -6px rgba(0, 0, 0, 0.75);
-        border: 1px solid rgba(169, 169, 169, 0.29);
         text-align: center;
-        background-color: white;
-
     }
 
     .row {
@@ -188,7 +179,7 @@
         font-size: 1.1rem;
     }
 
-    .buttons{
+    .buttons {
         float: left;
         width: 100%;
     }
