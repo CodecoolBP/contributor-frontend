@@ -22,19 +22,21 @@
                 <div class="card-columns">
                     <div v-if="projects && projects.length">
                         <transition-group name="list" tag="p" appear>
-                            <div v-for="project of filteredProjects" :key="project.id">
-                                <div class="card list-item" @mouseover="hoverCard(index)"
-                                     @mouseout="hoverCard(-1)">
-                                    <img class="cardLogo" src="../assets/img/logos/logo1.png" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h4 class="card-title">{{project.title}}</h4>
-                                        <p class="card-text">{{ project.shortDesc | truncate(25, ' ...') }}</p>
-                                        <a v-bind:href="'projects/'+ project.id" class="btn btn-info">I'm
-                                            interested!</a>
-                                    </div>
+
+                        <div v-for="project of filteredProjects" :key="project.id">
+                            <div class="card list-item" @mouseover="hoverCard(index)"
+                                 @mouseout="hoverCard(-1)">
+                                <img class="cardLogo" v-bind:src="project.image" alt="Card image cap">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{project.title}}</h4>
+                                    <p class="card-text">{{ project.shortDesc | truncate(25, ' ...') }}</p>
+                                    <a v-bind:href="'projects/'+ project.id" class="btn btn-info">I'm
+                                        interested!</a>
                                 </div>
                             </div>
+                        </div>
                         </transition-group>
+
                     </div>
                 </div>
 

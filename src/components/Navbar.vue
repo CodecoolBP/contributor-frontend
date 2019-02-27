@@ -47,13 +47,15 @@
 
 <script>
     import auth from '../Auth/AuthService.js';
+    import axios from "axios";
 
     export default {
         name: 'navbar',
         data () {
             return {
                 auth,
-                authenticated: (localStorage.getItem('accessToken') !== null)
+                authenticated: (localStorage.getItem('accessToken') !== null),
+                errors: []
             }
         },
         created () {
@@ -68,11 +70,23 @@
 
              auth.handleAuthentication(()=> {
                 this.$parent.fetchList();
+                 axios.post('http://localhost:5000/api/user/add', JSON.stringify(localStorage.getItem('idToken')), {
+                     headers: {
+                         'Content-Type': 'application/json',
+                         Authorization : 'Bearer ' + localStorage.getItem('accessToken')
+                     }
+                 })
+                     .then(response => {
+                         console.log("Access Granted.")
+                     })
+                     .catch(e => {
+                         this.errors.push(e)
+                     })
              });
         },
         methods: {
             login () {
-                auth.login()
+                auth.login();
             },
             logout () {
                 auth.logout()
