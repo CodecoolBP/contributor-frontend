@@ -21,8 +21,10 @@
 
                 <div class="card-columns">
                     <div v-if="projects && projects.length">
+                        <transition-group name="list" tag="p" appear>
+
                         <div v-for="project of filteredProjects" :key="project.id">
-                            <div class="card" @mouseover="hoverCard(index)"
+                            <div class="card list-item" @mouseover="hoverCard(index)"
                                  @mouseout="hoverCard(-1)">
                                 <img class="cardLogo" v-bind:src="project.image" alt="Card image cap">
                                 <div class="card-body">
@@ -33,6 +35,8 @@
                                 </div>
                             </div>
                         </div>
+                        </transition-group>
+
                     </div>
                 </div>
 
@@ -133,8 +137,6 @@
                             tagBoolean = false;
                         }
                     }
-                    /*console.log("------------------------------------------------");
-                    console.log("title: " + project.title + ", titleb:" + titleBoolean + ", short: " + shortBoolean + ", descr: " + descBoolean + ", req:" + reqBoolean );*/
 
                     return titleBoolean || descBoolean || shortBoolean || reqBoolean || orgBoolean || tagBoolean;
                 })
@@ -149,8 +151,7 @@
 
 </script>
 
-<style scoped>
-    @import '/node_modules/bootstrap/scss/bootstrap.scss';
+<style scoped lang="scss">
 
     #app {
         -webkit-font-smoothing: antialiased;
@@ -165,25 +166,31 @@
     }
 
     .projectlist-container {
-        background-color: #ffe5d0;
         padding-top: 3vh;
         padding-bottom: 5vh;
         min-height: 70vh;
     }
 
     .card {
-        box-shadow: 8px 8px 17px -6px rgba(0, 0, 0, 0.5);
         display: inline-block;
         transition: height 0.4s, box-shadow 0.4s;
     }
 
     .card:hover {
-        box-shadow: 12px 12px 12px 0px rgba(0, 0, 0, 0.4);
+        box-shadow: 12px 12px 12px 0 rgba(0, 0, 0, 0.4);
     }
 
     .cardLogo {
         width: 10vw;
         padding-top: 1.25rem;
+    }
+
+    .list-enter-active, .list-leave-active {
+        transition: all 1.5s;
+    }
+    .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+        opacity: 0;
+        transform: translateY(40px);
     }
 
 </style>

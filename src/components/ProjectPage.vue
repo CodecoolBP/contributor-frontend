@@ -6,7 +6,7 @@
         </div>
 
         <div class="container-fluid">
-            <div class="container">
+            <div class="container shadowedContainer">
 
                 <div class="bigcard" v-if="project">
                     <div>
@@ -131,10 +131,6 @@
         margin: 0 10px;
     }
 
-    a {
-        color: #42b983;
-    }
-
     .logo {
         width: 12vw;
         height: auto;
@@ -168,11 +164,6 @@
 
     .container {
         height: 100%;
-        margin-top: 4vh;
-        margin-bottom: 4vh;
-        background-color: white;
-        box-shadow: 6px 7px 17px -6px rgba(0, 0, 0, 0.75);
-        border: 1px solid rgba(169, 169, 169, 0.29);
         padding: 1vh 6vh;
 
     }

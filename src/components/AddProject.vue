@@ -3,7 +3,7 @@
         <vue-headful title="Add project"/>
         <navbar></navbar>
 
-        <div class="container">
+        <div class="container shadowedContainer">
             <h2>Add a new project</h2>
 
             <form>
@@ -142,20 +142,13 @@
 <style scoped>
     .container-fluid {
         padding: 0;
-        background-color: #ffe5d0;
         min-height: 100vh;
     }
 
     .container {
-        height: 85vh;
+        height: 100%;
         overflow: auto;
-        margin-top: 4vh;
-        margin-bottom: 4vh;
-        box-shadow: 6px 7px 17px -6px rgba(0, 0, 0, 0.75);
-        border: 1px solid rgba(169, 169, 169, 0.29);
-        background-color: white;
         padding: 4vh;
-
     }
 
     h2 {
