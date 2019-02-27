@@ -21,6 +21,7 @@
                                 <span> {{tag}} </span>
                             </span>
                                 </p>
+                                <p class="ptitle">Views: {{project.viewCounter}}</p>
                             </div>
 
                             <div class="col-md-8">

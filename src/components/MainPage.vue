@@ -29,7 +29,7 @@
                                 <img class="cardLogo" v-bind:src="project.image" alt="Card image cap">
                                 <div class="card-body">
                                     <h4 class="card-title">{{project.title}}</h4>
-                                    <p class="card-text">{{ project.shortDesc | truncate(25, ' ...') }}</p>
+                                    <p class="card-text">{{project.shortDesc}}</p>
                                     <a v-bind:href="'projects/'+ project.id" class="btn btn-info">I'm
                                         interested!</a>
                                 </div>
@@ -112,11 +112,13 @@
             onSearchInput(value) {
                 this.search = value;
             },
-        },
-        filters: {
-            truncate: function (text, length, suffix) {
-                return text.substring(0, length) + suffix;
-            },
+
+            orderByViews() {
+                let vm = this;
+                return vm.projects.sort((a, b) => b.viewCounter - a.viewCounter);
+            }
+
+
         },
 
         computed: {
@@ -140,7 +142,7 @@
 
                     return titleBoolean || descBoolean || shortBoolean || reqBoolean || orgBoolean || tagBoolean;
                 })
-            }
+            },
         },
 
         created() {

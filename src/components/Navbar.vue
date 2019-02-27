@@ -10,7 +10,7 @@
                         <a class="nav-link" href="#">Success stories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">TOP lists</a>
+                        <a class="nav-link" @click="sortByView">TOP lists</a>
                     </li>
                 </ul>
             </div>
@@ -90,6 +90,9 @@
             },
             logout () {
                 auth.logout()
+            },
+            sortByView() {
+                this.$parent.orderByViews();
             }
         },
     }
