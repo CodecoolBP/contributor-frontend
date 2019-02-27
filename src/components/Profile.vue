@@ -24,7 +24,7 @@
                                             <p class="card-text">{{project.shortDesc}}</p>
                                             <div class="row">
                                                 <div class="buttons">
-                                                    <a v-bind:href="'#/projects/'+ project.id"
+                                                    <a v-bind:href="'/projects/'+ project.id"
                                                        class="btn btn-info a-btn-slide-text">
                                                         <span><strong>View</strong></span>
                                                     </a>
@@ -46,7 +46,7 @@
                         <div v-else>
                             <p>You don't have any projects yet. </p>
                             <a class="btn btn-md btn-warning "
-                               href="http://localhost:8080/#/add"
+                               href="http://localhost:8080/add"
                                role="button" id="addproject">Add new
                                 project</a>
                         </div>
@@ -97,7 +97,6 @@
             },
             deleteProject: function (e) {
                 let id = e.currentTarget.getAttribute('data-id');
-                debugger;
                 axios.delete('http://localhost:5000/api/project/' + id + '/', {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem('accessToken')
