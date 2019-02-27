@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid fluidHeight">
         <vue-headful title="Edit project"/>
         <navbar></navbar>
 
@@ -152,7 +152,7 @@
     .container {
         height: 85vh;
         overflow: auto;
-        padding: 4vh;
+        padding: 4vh 8vh 4vh 8vh;
     }
 
     h2 {

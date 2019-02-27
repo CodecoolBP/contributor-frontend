@@ -5,7 +5,7 @@
             <navbar></navbar>
         </div>
 
-        <div class="container-fluid">
+        <div class="container-fluid fluidHeight">
             <div class="container shadowedContainer">
 
                 <div class="bigcard" v-if="project">

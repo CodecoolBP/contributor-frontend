@@ -1,7 +1,7 @@
 <template>
     <div>
         <vue-headful title="Profile"/>
-        <div class="container-fluid">
+        <div class="container-fluid fluidHeight">
             <navbar></navbar>
             <div class="container shadowedContainer">
                 <div class="row ">
