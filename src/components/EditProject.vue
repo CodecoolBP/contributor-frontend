@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid fluidHeight">
         <vue-headful title="Edit project"/>
         <navbar></navbar>
 
@@ -129,7 +129,7 @@
                     ).then(() => {
                         let vm = this;
                         setTimeout(function () {
-                            let url = 'http://localhost:8080/#/projects/' + vm.project.id;
+                            let url = 'http://localhost:8080/projects/' + vm.project.id;
                             vm.fetchList();
                             window.location.replace(url);
                         }, 500);
@@ -152,7 +152,7 @@
     .container {
         height: 85vh;
         overflow: auto;
-        padding: 4vh;
+        padding: 4vh 8vh 4vh 8vh;
     }
 
     h2 {

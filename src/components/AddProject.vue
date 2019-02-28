@@ -1,9 +1,9 @@
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid fluidHeight">
         <vue-headful title="Add project"/>
         <navbar></navbar>
 
-        <div class="container shadowedContainer">
+        <div class="container shadowedContainer ">
             <h2>Add a new project</h2>
 
             <form>
@@ -126,7 +126,7 @@
                         }
                     ).then(() => {
                         setTimeout(function () {
-                            let url = 'http://localhost:8080/#/';
+                            let url = 'http://localhost:8080/';
                             window.location.replace(url);
                         },500);
                     })
@@ -148,7 +148,7 @@
     .container {
         height: 100%;
         overflow: auto;
-        padding: 4vh;
+        padding: 4vh 8vh 4vh 8vh;
     }
 
     h2 {
