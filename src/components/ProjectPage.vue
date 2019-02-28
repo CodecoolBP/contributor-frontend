@@ -139,7 +139,7 @@
         color:white;
         height:1px;
         background:black;
-        background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 350, from(#000), to(#fff));
+        background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 350, from(dimgrey), to(#fff));
     }
 
     .logo {
