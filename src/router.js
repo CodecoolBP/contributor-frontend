@@ -5,6 +5,9 @@ import AddProject from './components/AddProject.vue'
 import ProjectPage from './components/ProjectPage.vue'
 import Profile from './components/Profile.vue'
 import EditProject from './components/EditProject.vue'
+import About from './components/About.vue'
+import Contact from './components/Contact.vue'
+
 Vue.use(Router);
 
 export default new Router({
@@ -39,6 +42,16 @@ export default new Router({
             path: '/profile/:id',
             name: 'profile',
             component: Profile
+        },
+        {
+            path: '/about',
+            name: 'About',
+            component: About
+        },
+        {
+            path: '/contact',
+            name: 'Contact',
+            component: Contact
         }
     ]
 })
