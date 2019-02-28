@@ -66,7 +66,7 @@
 
 
                     </div>
-                    <button type="button" class="btn btn-danger">CONTRIBUTE</button>
+                    <button type="button" class="btn btn-danger" @click="contribute">CONTRIBUTE</button>
                 </div>
             </div>
         </div>
@@ -89,6 +89,7 @@
         },
         data() {
             return {
+                user: {},
                 project: {},
                 errors: [],
                 image: null
@@ -104,12 +105,43 @@
                 .then(response => {
                     this.project = response.data;
                     console.log("resp: " + response.data);
-                    console.log("proj" + this.project)
+                    console.log("proj" + this.project);
+                    console.log(this.project);
+                })
+                .catch(e => {
+                    this.errors.push(e)
+                });
+            axios.get('http://localhost:5000/api/user/token', {
+                headers: {
+                    Authorization : 'Bearer ' + localStorage.getItem('accessToken'),
+                    idToken : localStorage.getItem('idToken')
+                }
+            })
+                .then(response => {
+                    this.user = response.data;
+                    console.log(this.user)
                 })
                 .catch(e => {
                     this.errors.push(e)
                 })
         },
+        methods: {
+            contribute() {
+                axios.put('http://localhost:5000/api/project/' + this.$route.params.id + '/contribute', JSON.stringify(this.user), {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization : 'Bearer ' + localStorage.getItem('accessToken'),
+                            idToken : localStorage.getItem('idToken')
+                        }
+                    }
+                ).then(() => {
+                    console.log("Contribution saved.")
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            }
+        }
 
     }
 
