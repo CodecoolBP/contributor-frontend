@@ -1,6 +1,21 @@
 <template>
     <div>
+        <vue-headful title="About"/>
+        <div class="container-fluid fluidHeight">
+            <navbar></navbar>
+            <div class="container shadowedContainer">
+                <div class="row ">
+                    <div class="col-md-3 profiles leftProfile col-centered">
+                        <h2 class ="cardLeftSideText" align="center">About</h2>
+                    </div>
+                    <div class="col-md-9 profiles rightProfile">
+                        <p class="aboutText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p class="aboutText">.murobal tse di mina tillom tnuresed aiciffo iuq apluc ni tnus ,tnediorp non tatadipuc taceacco tnis ruetpecxE .rutairap allun taiguf ue erolod mullic esse tilev etatpulov ni tiredneherper ni rolod eruri etua siuD .tauqesnoc odommoc ae xe piuqila tu isin sirobal ocmallu noitaticrexe durtson siuq ,mainev minim da mine tU .auqila angam erolod te erobal tu tnudidicni ropmet domsuie od des ,tile gnicsipida rutetcesnoc ,tema tis rolod muspi meroL</p>
 
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -11,5 +26,25 @@
 </script>
 
 <style scoped>
+
+    .container {
+        height: 85vh;
+        overflow: auto;
+        text-align: center;
+    }
+
+    .row {
+        height: 100%;
+    }
+
+    .aboutText {
+        padding-top: 100px;
+    }
+
+    .container-fluid {
+        padding: 0;
+    }
+
+
 
 </style>

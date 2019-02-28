@@ -27,7 +27,7 @@
                             <div class="col-md-9 profiles rightProfile">
 
                                 <h1 class="title display-3">{{project.title}}</h1>
-                                <hr>
+                                <hr class="sexy_line">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <p class="ptitle">Organisation:</p>
@@ -133,9 +133,13 @@
         margin: 0 10px;
     }
 
-    hr {
-        border: 1px solid rgba(0, 0, 0, 0.18);
-        width: 80%;
+    .sexy_line{
+        display:block;
+        border:none;
+        color:white;
+        height:1px;
+        background:black;
+        background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 350, from(#000), to(#fff));
     }
 
     .logo {
