@@ -17,8 +17,8 @@
 
 
 <style lang="scss">
-    $primary-bg-color: #ffe5d0;
-    $card-shadow: 8px 8px 17px -6px rgba(0, 0, 0, 0.5);
+    $primary-bg-color: #DEB887;
+    $card-shadow: 8px 8px 17px -6px rgba(0, 0, 0, 0.7);
     $container-shadow: 11px 8px 17px -6px rgba(0, 0, 0, 0.75);
     $shadowedContainer-top-margin: 4vh;
     $shadowedContainer-bottom-margin: 8vh;
