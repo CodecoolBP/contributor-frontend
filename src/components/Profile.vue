@@ -8,8 +8,9 @@
                     <div class="col-md-3 profiles leftProfile col-centered">
                         <img class="img-fluid" id="profileImg" src="../assets/img/user.png"
                              alt="Profile image">
-                        <div v-if="email">
-                            <p class="cardLeftSideText">Logged in as: {{email}} </p>
+                        <div class="cardLeftSideText" v-if="email">
+                            <p >User: </p>
+                            <p>{{email}}</p>
                         </div>
 
                     </div>
@@ -168,7 +169,6 @@
     }
 
     .buttons {
-        float: left;
         width: 100%;
     }
 </style>

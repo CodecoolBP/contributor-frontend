@@ -62,7 +62,7 @@
     }
 
     .rightProfile {
-        padding: 3vh;
+        padding: 3vh !important;
     }
     .profiles {
         padding: 3vh;
