@@ -25,6 +25,7 @@
     $shadowedContainer-bg: white;
     $shadowedContainer-border: 1px solid rgba(169, 169, 169, 0.29);
     $shadowedContainer-border-radius: 8px;
+    $cardLeftSide-color: #343a40;
 
     .container-fluid {
         background-color: $primary-bg-color;
@@ -52,6 +53,24 @@
 
     html, body {
         height: 100%;
+        background-color: $primary-bg-color !important;
+    }
+
+    .leftProfile {
+        background-color: $cardLeftSide-color;
+        border-radius: 4px;
+    }
+
+    .rightProfile {
+        padding: 3vh;
+    }
+    .profiles {
+        padding: 3vh;
+    }
+
+    .cardLeftSideText {
+        margin-top: 3vh;
+        color: white;
     }
 
 </style>
