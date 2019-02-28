@@ -134,8 +134,8 @@
                             idToken : localStorage.getItem('idToken')
                         }
                     }
-                ).then(() => {
-                    console.log("Contribution saved.")
+                ).then((response) => {
+                    console.log(response.data)
                 })
                 .catch((error) => {
                     console.log(error);
