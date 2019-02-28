@@ -9,7 +9,7 @@
                         <img class="img-fluid" id="profileImg" src="../assets/img/user.png"
                              alt="Profile image">
                         <div v-if="email">
-                            <p id="email">Logged in as: {{email}} </p>
+                            <p class="cardLeftSideText">Logged in as: {{email}} </p>
                         </div>
 
                     </div>
@@ -83,7 +83,7 @@
             fetchList: function () {
                 axios.get('http://localhost:5000/api/user/' + this.$route.params.id + '/', {
                     headers: {
-                        Authorization : 'Bearer ' + localStorage.getItem('accessToken')
+                        Authorization: 'Bearer ' + localStorage.getItem('accessToken')
                     }
                 })
                     .then(response => {
@@ -98,8 +98,8 @@
                 let id = e.currentTarget.getAttribute('data-id');
                 axios.delete('http://localhost:5000/api/project/' + id + '/', {
                     headers: {
-                        Authorization : 'Bearer ' + localStorage.getItem('accessToken'),
-                        idToken : localStorage.getItem('idToken')
+                        Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
+                        idToken: localStorage.getItem('idToken')
                     }
                 }).then(() => {
                     this.fetchList();
@@ -140,9 +140,6 @@
         padding: 0;
     }
 
-    .leftProfile {
-        background-color: #343a40;
-    }
 
     .container {
         height: 85vh;
@@ -154,9 +151,6 @@
         height: 100%;
     }
 
-    .profiles {
-        padding: 3vh;
-    }
 
     .cardLogo {
         width: 7vw;
@@ -168,11 +162,6 @@
         margin-top: 2vh;
     }
 
-    #email {
-        margin-top: 3vh;
-        color: white;
-        font-weight: bolder;
-    }
 
     .card-title, .card-text {
         font-size: 1.1rem;

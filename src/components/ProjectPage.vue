@@ -1,6 +1,6 @@
 <template>
     <div class="projectPageBack">
-        <vue-headful :title="project.title" />
+        <vue-headful :title="project.title"/>
         <div class="container-fluid">
             <navbar></navbar>
         </div>
@@ -8,26 +8,26 @@
         <div class="container-fluid fluidHeight">
             <div class="container shadowedContainer">
 
-                <div class="bigcard" v-if="project">
+                <div v-if="project">
                     <div>
                         <div class="row">
 
-                            <div class="col-md-4 col-centered">
+                            <div class="col-md-3 profiles leftProfile col-centered">
                                 <img class="logo" alt="Vue logo" v-bind:src="project.image">
                                 <br><br>
-                                <p class="ptitle">Status: {{project.status}}</p>
-                                <p class="ptitle">Tags:
+                                <p class="ptitle cardLeftSideText">Status: {{project.status}}</p>
+                                <p class="ptitle cardLeftSideText">Tags:
                                     <span v-for="tag in project.tags">
                                 <span> {{tag}} </span>
                             </span>
                                 </p>
-                                <p class="ptitle">Views: {{project.viewCounter}}</p>
+                                <p class="ptitle cardLeftSideText">Views: {{project.viewCounter}}</p>
                             </div>
 
-                            <div class="col-md-8">
+                            <div class="col-md-9 profiles rightProfile">
 
-                                <h1 class="title display-3">{{project.title}}</h1><br><br>
-
+                                <h1 class="title display-3">{{project.title}}</h1>
+                                <hr>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <p class="ptitle">Organisation:</p>
@@ -54,8 +54,10 @@
                                         <p>{{project.requirements}}</p>
                                     </div>
                                 </div>
-
+                                <br>
+                                <button type="button" class="btn btn-danger">CONTRIBUTE</button>
                             </div>
+
                         </div>
 
                         <div v-if="errors && errors.length">
@@ -66,7 +68,6 @@
 
 
                     </div>
-                    <button type="button" class="btn btn-danger">CONTRIBUTE</button>
                 </div>
             </div>
         </div>
@@ -98,7 +99,7 @@
         created() {
             axios.get('http://localhost:5000/api/project/' + this.$route.params.id + '/', {
                 headers: {
-                    Authorization : 'Bearer ' + localStorage.getItem('accessToken')
+                    Authorization: 'Bearer ' + localStorage.getItem('accessToken')
                 }
             })
                 .then(response => {
@@ -132,6 +133,11 @@
         margin: 0 10px;
     }
 
+    hr {
+        border: 1px solid rgba(0, 0, 0, 0.18);
+        width: 80%;
+    }
+
     .logo {
         width: 12vw;
         height: auto;
@@ -151,12 +157,7 @@
 
     .title {
         padding: 30px;
-    }
-
-    .projectPageBack {
-        background-color: #ffe5d0;
-        margin: 0;
-        height: 100%;
+        text-align: center;
     }
 
     .container-fluid {
@@ -165,8 +166,6 @@
 
     .container {
         height: 100%;
-        padding: 1vh 6vh;
-
     }
 
     .btn-danger {
@@ -177,9 +176,8 @@
     }
 
     .ptitle {
-        font-weight: bold;
         font-size: 2vh;
-
+        font-weight: bolder;
     }
 
     .col-centered {
