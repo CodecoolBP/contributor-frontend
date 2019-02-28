@@ -121,7 +121,8 @@
                     axios.post('http://localhost:5000/api/project/add', jsonData, {
                             headers: {
                                 'Content-Type': 'application/json',
-                                Authorization : 'Bearer ' + localStorage.getItem('accessToken')
+                                Authorization : 'Bearer ' + localStorage.getItem('accessToken'),
+                                idToken: localStorage.getItem('idToken')
                             }
                         }
                     ).then(() => {
