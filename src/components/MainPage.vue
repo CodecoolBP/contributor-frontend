@@ -175,11 +175,13 @@
 
     .card {
         display: inline-block;
-        transition: height 0.4s, box-shadow 0.4s;
+        transition: all .2s ease-in-out;
+        margin: 7px;
     }
 
     .card:hover {
-        box-shadow: 12px 12px 12px 0 rgba(0, 0, 0, 0.4);
+        box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, 0.3);
+        transform: scale(1.03);
     }
 
     .cardLogo {
